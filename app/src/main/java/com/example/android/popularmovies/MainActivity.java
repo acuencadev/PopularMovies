@@ -1,5 +1,6 @@
 package com.example.android.popularmovies;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String EXTRA_MESSAGE = "com.example.android.popularmovies.MESSAGEMOVIEID";
 
     private final String API_URL = "https://api.themoviedb.org/3/";
 
@@ -45,7 +48,10 @@ public class MainActivity extends AppCompatActivity {
                     mMoviesAdapter = new MoviesAdapter(response.body().getMovies(), new MoviesAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(Movie movie) {
-                            //TODO: Start DetailsActivity passing the movie ID.
+                            Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                            intent.putExtra(EXTRA_MESSAGE, movie.getId());
+
+                            startActivity(intent);
                         }
                     });
                     mMoviesRecyclerView.setAdapter(mMoviesAdapter);
