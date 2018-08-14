@@ -2,4 +2,7 @@
     <string name="app_name">Popular Movies</string>
 
     <string name="action_preferences">Preferences</string>
+    
+    <string name="pref_sort">Sorting</string>
+    <string name="pref_sort_summary">Sort by popularity or by top rated films</string>
 </resources>
