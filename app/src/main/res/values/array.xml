@@ -2,11 +2,31 @@
 <resources>
     <string-array name="sort_entries">
         <item>Popularity</item>
-        <item>Top rated</item>
+        <item>Release Date</item>
+        <item>Revenue</item>
+        <item>Primary Release Date</item>
+        <item>Original Title</item>
+        <item>Vote Average</item>
+        <item>Vote Count</item>
     </string-array>
 
     <string-array name="sort_entry_values">
         <item>popularity</item>
+        <item>release_date</item>
+        <item>revenue</item>
+        <item>primary_release_date</item>
+        <item>original_title</item>
         <item>vote_average</item>
+        <item>vote_count</item>
+    </string-array>
+
+    <string-array name="sort_order_entries">
+        <item>Ascending</item>
+        <item>Descending</item>
+    </string-array>
+
+    <string-array name="sort_order_entry_values">
+        <item>asc</item>
+        <item>desc</item>
     </string-array>
 </resources>
