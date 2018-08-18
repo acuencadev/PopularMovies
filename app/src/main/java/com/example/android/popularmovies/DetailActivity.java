@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.popularmovies.http.MoviesAPI;
@@ -21,6 +22,14 @@ public class DetailActivity extends AppCompatActivity {
 
     Movie movie;
 
+    private ImageView mPosterImageView;
+    private TextView mYearTextView;
+    private TextView mStatusTextView;
+    private TextView mLengthTextView;
+    private TextView mVotesTextView;
+    private TextView mGenresTextView;
+    private TextView mDescriptionTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +37,8 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int id = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
+
+        initializeViews();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
@@ -55,5 +66,15 @@ public class DetailActivity extends AppCompatActivity {
                         "Couldn't load movie info.", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void initializeViews() {
+        mPosterImageView = findViewById(R.id.activity_detail_poster_imageView);
+        mDescriptionTextView = findViewById(R.id.activity_detail_description_textView);
+        mGenresTextView = findViewById(R.id.activity_detail_genres_textView);
+        mLengthTextView = findViewById(R.id.activity_detail_length_textView);
+        mStatusTextView = findViewById(R.id.activity_detail_status_textView);
+        mVotesTextView = findViewById(R.id.activity_detail_votes_textView);
+        mYearTextView = findViewById(R.id.activity_detail_year_textView);
     }
 }
