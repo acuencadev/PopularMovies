@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.android.popularmovies.http.MoviesAPI;
 import com.example.android.popularmovies.http.model.Movie;
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -18,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DetailActivity extends AppCompatActivity {
 
+    private final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
     private final String API_URL = "https://api.themoviedb.org/3/";
 
     Movie movie;
@@ -52,10 +54,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onResponse(Call<Movie> call, Response<Movie> response) {
                 if (response.isSuccessful()) {
                     movie = response.body();
-
-                    DetailActivity.this.setTitle(movie.getTitle());
-
-                    //TODO: Update UI views with Movie info.
+                    populateViews(movie);
                 }
             }
 
@@ -76,5 +75,16 @@ public class DetailActivity extends AppCompatActivity {
         mStatusTextView = findViewById(R.id.activity_detail_status_textView);
         mVotesTextView = findViewById(R.id.activity_detail_votes_textView);
         mYearTextView = findViewById(R.id.activity_detail_year_textView);
+    }
+
+    private void populateViews(Movie movie) {
+        DetailActivity.this.setTitle(movie.getTitle());
+        Picasso.get().load(POSTER_URL + movie.getPosterPath()).into(mPosterImageView);
+        mDescriptionTextView.setText(movie.getOverview());
+        mStatusTextView.setText(movie.getStatus());
+        mYearTextView.setText(movie.getReleaseDate().substring(0, 4));
+        mVotesTextView.setText(movie.getVoteString());
+        mGenresTextView.setText(movie.getGenresString());
+        mLengthTextView.setText(movie.getRuntime().toString() + " mins");
     }
 }
