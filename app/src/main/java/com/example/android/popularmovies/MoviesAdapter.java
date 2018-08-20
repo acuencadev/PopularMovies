@@ -12,7 +12,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewHolder> {
+public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridViewHolder> {
 
     private final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
 
@@ -25,13 +25,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
     }
 
     @Override
-    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_list_item, parent, false);
-        return new MovieViewHolder(view);
+    public MovieGridViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_grid_item, parent, false);
+        return new MovieGridViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(MovieViewHolder holder, int position) {
+    public void onBindViewHolder(MovieGridViewHolder holder, int position) {
         holder.bind(movies.get(position), listener);
     }
 
@@ -44,14 +44,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
         void onItemClick(Movie movie);
     }
 
-    class MovieViewHolder extends RecyclerView.ViewHolder {
+    class MovieListViewHolder extends RecyclerView.ViewHolder {
 
         ImageView posterImageView;
         TextView titleTextView;
         TextView releaseDateTextView;
         TextView votesTextView;
 
-        public MovieViewHolder(View itemView) {
+        public MovieListViewHolder(View itemView) {
             super(itemView);
 
             titleTextView = itemView.findViewById(R.id.movie_list_item_title_textView);
@@ -65,6 +65,28 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieViewH
             releaseDateTextView.setText(movie.getReleaseDate());
             votesTextView.setText(movie.getVoteString());
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(movie);
+                }
+            });
+
+            Picasso.get().load(POSTER_URL + movie.getPosterPath()).into(posterImageView);
+        }
+    }
+
+    class MovieGridViewHolder extends RecyclerView.ViewHolder {
+
+        ImageView posterImageView;
+
+        public MovieGridViewHolder(View itemView) {
+            super(itemView);
+
+            posterImageView = itemView.findViewById(R.id.movie_list_item_poster_imageView);
+        }
+
+        public void bind(final Movie movie, final OnItemClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
