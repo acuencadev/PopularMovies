@@ -83,7 +83,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
         public MovieGridViewHolder(View itemView) {
             super(itemView);
 
-            posterImageView = itemView.findViewById(R.id.movie_list_item_poster_imageView);
+            posterImageView = itemView.findViewById(R.id.movie_grid_item_poster_imageView);
         }
 
         public void bind(final Movie movie, final OnItemClickListener listener) {
