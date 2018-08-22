@@ -233,6 +233,14 @@ public class Movie {
         return runtime;
     }
 
+    public String getRuntimeString() {
+        if (runtime != null) {
+            return runtime.toString() + " mins";
+        }
+
+        return "Unknown";
+    }
+
     public void setRuntime(Integer runtime) {
         this.runtime = runtime;
     }

@@ -1,8 +1,10 @@
 package com.example.android.popularmovies;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -36,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         mMoviesRecyclerView = findViewById(R.id.activity_main_movies_recyclerView);
         mMoviesRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String sortBy = prefs.getString(getString(R.string.pref_sort_key), getString(R.string.pref_sort_default))
+                + "." + prefs.getString(getString(R.string.pref_sort_order_key), getString(R.string.pref_sort_order_default));
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -43,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         MoviesAPI api = retrofit.create(MoviesAPI.class);
 
-        api.getMovies(BuildConfig.MOVIES_API).enqueue(new Callback<MoviesResponse>() {
+        api.getMovies(BuildConfig.MOVIES_API, sortBy).enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful()) {

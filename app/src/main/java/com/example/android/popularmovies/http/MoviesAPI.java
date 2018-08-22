@@ -14,6 +14,6 @@ public interface MoviesAPI {
     Call<Movie> getMovie(@Path("id") int id, @Query("api_key") String apiKey);
 
     @GET("discover/movie")
-    Call<MoviesResponse> getMovies(@Query("api_key") String apiKey);
+    Call<MoviesResponse> getMovies(@Query("api_key") String apiKey, @Query("sort_by") String sort);
 
 }

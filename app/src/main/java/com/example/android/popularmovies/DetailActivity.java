@@ -3,6 +3,7 @@ package com.example.android.popularmovies;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -80,11 +81,16 @@ public class DetailActivity extends AppCompatActivity {
     private void populateViews(Movie movie) {
         DetailActivity.this.setTitle(movie.getTitle());
         Picasso.get().load(POSTER_URL + movie.getPosterPath()).into(mPosterImageView);
+
         mDescriptionTextView.setText(movie.getOverview());
         mStatusTextView.setText(movie.getStatus());
-        mYearTextView.setText(movie.getReleaseDate().substring(0, 4));
+
+        String releaseYear = movie.getReleaseDate().substring(0, 4);
+        mYearTextView.setText(releaseYear);
+
         mVotesTextView.setText(movie.getVoteString());
         mGenresTextView.setText(movie.getGenresString());
-        mLengthTextView.setText(movie.getRuntime().toString() + " mins");
+
+        mLengthTextView.setText(movie.getRuntimeString());
     }
 }
