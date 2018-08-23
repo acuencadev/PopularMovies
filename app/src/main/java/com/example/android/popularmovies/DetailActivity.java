@@ -1,10 +1,13 @@
 package com.example.android.popularmovies;
 
 import android.content.Intent;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,9 @@ public class DetailActivity extends AppCompatActivity {
     private TextView mGenresTextView;
     private TextView mDescriptionTextView;
 
+    private ProgressBar mLoadingProgressBar;
+    private ConstraintLayout mMainConstraintLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,12 +56,18 @@ public class DetailActivity extends AppCompatActivity {
 
         MoviesAPI api = retrofit.create(MoviesAPI.class);
 
+        mLoadingProgressBar.setVisibility(View.VISIBLE);
+        mMainConstraintLayout.setVisibility(View.INVISIBLE);
+
         api.getMovie(id, BuildConfig.MOVIES_API).enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
                 if (response.isSuccessful()) {
                     movie = response.body();
                     populateViews(movie);
+
+                    mLoadingProgressBar.setVisibility(View.INVISIBLE);
+                    mMainConstraintLayout.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -76,6 +88,9 @@ public class DetailActivity extends AppCompatActivity {
         mStatusTextView = findViewById(R.id.activity_detail_status_textView);
         mVotesTextView = findViewById(R.id.activity_detail_votes_textView);
         mYearTextView = findViewById(R.id.activity_detail_year_textView);
+
+        mMainConstraintLayout = findViewById(R.id.activity_detail_main_constraintLayout);
+        mLoadingProgressBar = findViewById(R.id.activity_detail_loading_progressBar);
     }
 
     private void populateViews(Movie movie) {
