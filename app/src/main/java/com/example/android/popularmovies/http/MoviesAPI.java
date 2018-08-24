@@ -19,7 +19,7 @@ public interface MoviesAPI {
     @GET("movie/top_rated")
     Call<MoviesResponse> getTopRatedMovies(@Query("api_key") String apiKey);
 
-    @GET("movie/top_rated")
+    @GET("movie/popular")
     Call<MoviesResponse> getPopularMovies(@Query("api_key") String apiKey);
 
 }
