@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     MoviesAdapter mMoviesAdapter;
     RecyclerView mMoviesRecyclerView;
 
+    Call<MoviesResponse> moviesResponseCall;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +41,7 @@ public class MainActivity extends AppCompatActivity {
         mMoviesRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String sortBy = prefs.getString(getString(R.string.pref_sort_key), getString(R.string.pref_sort_default))
-                + "." + prefs.getString(getString(R.string.pref_sort_order_key), getString(R.string.pref_sort_order_default));
-
+        String sortBy = prefs.getString(getString(R.string.pref_sort_key), getString(R.string.pref_sort_default));
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
@@ -50,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
         MoviesAPI api = retrofit.create(MoviesAPI.class);
 
-        api.getMovies(BuildConfig.MOVIES_API, sortBy).enqueue(new Callback<MoviesResponse>() {
+        moviesResponseCall = sortBy.equals(getString(R.string.pref_sort_default)) ? api.getPopularMovies(BuildConfig.MOVIES_API) : api.getTopRatedMovies(BuildConfig.MOVIES_API);
+
+        moviesResponseCall.enqueue(new Callback<MoviesResponse>() {
             @Override
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 if (response.isSuccessful()) {
