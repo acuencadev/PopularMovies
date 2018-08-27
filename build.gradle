@@ -34,6 +34,7 @@ ext {
 
     retrofitVersion = '2.4.0'
     picassoVersion = '2.71828'
+    butterknifeVersion = '8.8.1'
 }
 
 task clean(type: Delete) {
