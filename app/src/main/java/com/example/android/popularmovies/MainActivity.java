@@ -15,6 +15,9 @@ import com.example.android.popularmovies.http.MoviesAPI;
 import com.example.android.popularmovies.http.model.Movie;
 import com.example.android.popularmovies.http.model.MoviesResponse;
 
+import butterknife.BindString;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,7 +31,14 @@ public class MainActivity extends AppCompatActivity {
     private final String API_URL = "https://api.themoviedb.org/3/";
 
     MoviesAdapter mMoviesAdapter;
+
+    @BindView(R.id.activity_main_movies_recyclerView)
     RecyclerView mMoviesRecyclerView;
+
+    @BindString(R.string.pref_sort_key) String mPrefSortKey;
+    @BindString(R.string.pref_sort_default) String mPrefSortDefault;
+
+    @BindString(R.string.error_displaying_movies) String mErrorDisplayingMovies;
 
     Call<MoviesResponse> moviesResponseCall;
 
@@ -37,11 +47,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mMoviesRecyclerView = findViewById(R.id.activity_main_movies_recyclerView);
+        ButterKnife.bind(this);
+
         mMoviesRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String sortBy = prefs.getString(getString(R.string.pref_sort_key), getString(R.string.pref_sort_default));
+        String sortBy = prefs.getString(mPrefSortKey, mPrefSortDefault);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
@@ -50,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         MoviesAPI api = retrofit.create(MoviesAPI.class);
 
-        moviesResponseCall = sortBy.equals(getString(R.string.pref_sort_default)) ? api.getPopularMovies(BuildConfig.MOVIES_API) : api.getTopRatedMovies(BuildConfig.MOVIES_API);
+        moviesResponseCall = sortBy.equals(mPrefSortDefault) ? api.getPopularMovies(BuildConfig.MOVIES_API) : api.getTopRatedMovies(BuildConfig.MOVIES_API);
 
         moviesResponseCall.enqueue(new Callback<MoviesResponse>() {
             @Override
@@ -76,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(
                         MainActivity.this,
-                        "Couldn't retrieve movies list. Please try again.",
+                        mErrorDisplayingMovies,
                         Toast.LENGTH_SHORT).show();
             }
         });
