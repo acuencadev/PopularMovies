@@ -15,6 +15,9 @@ import com.example.android.popularmovies.http.MoviesAPI;
 import com.example.android.popularmovies.http.model.Movie;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindString;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,16 +31,35 @@ public class DetailActivity extends AppCompatActivity {
 
     Movie movie;
 
+    @BindView(R.id.activity_detail_poster_imageView)
     private ImageView mPosterImageView;
+
+    @BindView(R.id.activity_detail_year_textView)
     private TextView mYearTextView;
+
+    @BindView(R.id.activity_detail_status_textView)
     private TextView mStatusTextView;
+
+    @BindView(R.id.activity_detail_length_textView)
     private TextView mLengthTextView;
+
+    @BindView(R.id.activity_detail_votes_textView)
     private TextView mVotesTextView;
+
+    @BindView(R.id.activity_detail_genres_textView)
     private TextView mGenresTextView;
+
+    @BindView(R.id.activity_detail_description_textView)
     private TextView mDescriptionTextView;
 
+    @BindView(R.id.activity_detail_loading_progressBar)
     private ProgressBar mLoadingProgressBar;
+
+    @BindView(R.id.activity_detail_main_constraintLayout)
     private ConstraintLayout mMainConstraintLayout;
+
+    @BindString(R.string.error_displaying_movie)
+    private String mErrorDisplayingMovie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +69,7 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int id = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
 
-        initializeViews();
+        ButterKnife.bind(this);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
@@ -75,22 +97,9 @@ public class DetailActivity extends AppCompatActivity {
             public void onFailure(Call<Movie> call, Throwable t) {
                 t.printStackTrace();
                 Toast.makeText(DetailActivity.this,
-                        "Couldn't load movie info.", Toast.LENGTH_LONG).show();
+                        mErrorDisplayingMovie, Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    private void initializeViews() {
-        mPosterImageView = findViewById(R.id.activity_detail_poster_imageView);
-        mDescriptionTextView = findViewById(R.id.activity_detail_description_textView);
-        mGenresTextView = findViewById(R.id.activity_detail_genres_textView);
-        mLengthTextView = findViewById(R.id.activity_detail_length_textView);
-        mStatusTextView = findViewById(R.id.activity_detail_status_textView);
-        mVotesTextView = findViewById(R.id.activity_detail_votes_textView);
-        mYearTextView = findViewById(R.id.activity_detail_year_textView);
-
-        mMainConstraintLayout = findViewById(R.id.activity_detail_main_constraintLayout);
-        mLoadingProgressBar = findViewById(R.id.activity_detail_loading_progressBar);
     }
 
     private void populateViews(Movie movie) {

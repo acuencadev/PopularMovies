@@ -8,4 +8,5 @@
     <string name="pref_sort_default" translatable="false">most_popular</string>
 
     <string name="error_displaying_movies">Couldn\'t retrieve movies list. Please try again.</string>
+    <string name="error_displaying_movie">Couldn\'t load movie info.</string>
 </resources>
