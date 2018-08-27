@@ -12,6 +12,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridViewHolder> {
 
     private final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
@@ -46,18 +49,22 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
 
     class MovieListViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.movie_list_item_poster_imageView)
         ImageView posterImageView;
+
+        @BindView(R.id.movie_list_item_title_textView)
         TextView titleTextView;
+
+        @BindView(R.id.movie_list_item_release_date_textView)
         TextView releaseDateTextView;
+
+        @BindView(R.id.movie_list_item__votes_textView)
         TextView votesTextView;
 
         public MovieListViewHolder(View itemView) {
             super(itemView);
 
-            titleTextView = itemView.findViewById(R.id.movie_list_item_title_textView);
-            releaseDateTextView = itemView.findViewById(R.id.movie_list_item_release_date_textView);
-            votesTextView = itemView.findViewById(R.id.movie_list_item__votes_textView);
-            posterImageView = itemView.findViewById(R.id.movie_list_item_poster_imageView);
+            ButterKnife.bind(this, itemView);
         }
 
         public void bind(final Movie movie, final OnItemClickListener listener) {
@@ -78,12 +85,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
 
     class MovieGridViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.movie_grid_item_poster_imageView)
         ImageView posterImageView;
 
         public MovieGridViewHolder(View itemView) {
             super(itemView);
 
-            posterImageView = itemView.findViewById(R.id.movie_grid_item_poster_imageView);
+            ButterKnife.bind(this, itemView);
         }
 
         public void bind(final Movie movie, final OnItemClickListener listener) {
