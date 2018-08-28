@@ -58,7 +58,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/movie_list_item_title_textView" />
 
             <TextView
-                android:id="@+id/movie_list_item__votes_textView"
+                android:id="@+id/movie_list_item_votes_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"

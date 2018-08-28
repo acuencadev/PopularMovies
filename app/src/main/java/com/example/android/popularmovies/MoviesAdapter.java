@@ -58,7 +58,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
         @BindView(R.id.movie_list_item_release_date_textView)
         TextView releaseDateTextView;
 
-        @BindView(R.id.movie_list_item__votes_textView)
+        @BindView(R.id.movie_list_item_votes_textView)
         TextView votesTextView;
 
         public MovieListViewHolder(View itemView) {

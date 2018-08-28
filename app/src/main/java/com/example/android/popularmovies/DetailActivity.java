@@ -32,34 +32,34 @@ public class DetailActivity extends AppCompatActivity {
     Movie movie;
 
     @BindView(R.id.activity_detail_poster_imageView)
-    private ImageView mPosterImageView;
+    ImageView mPosterImageView;
 
     @BindView(R.id.activity_detail_year_textView)
-    private TextView mYearTextView;
+    TextView mYearTextView;
 
     @BindView(R.id.activity_detail_status_textView)
-    private TextView mStatusTextView;
+    TextView mStatusTextView;
 
     @BindView(R.id.activity_detail_length_textView)
-    private TextView mLengthTextView;
+    TextView mLengthTextView;
 
     @BindView(R.id.activity_detail_votes_textView)
-    private TextView mVotesTextView;
+    TextView mVotesTextView;
 
     @BindView(R.id.activity_detail_genres_textView)
-    private TextView mGenresTextView;
+    TextView mGenresTextView;
 
     @BindView(R.id.activity_detail_description_textView)
-    private TextView mDescriptionTextView;
+    TextView mDescriptionTextView;
 
     @BindView(R.id.activity_detail_loading_progressBar)
-    private ProgressBar mLoadingProgressBar;
+    ProgressBar mLoadingProgressBar;
 
     @BindView(R.id.activity_detail_main_constraintLayout)
-    private ConstraintLayout mMainConstraintLayout;
+    ConstraintLayout mMainConstraintLayout;
 
     @BindString(R.string.error_displaying_movie)
-    private String mErrorDisplayingMovie;
+    String mErrorDisplayingMovie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
