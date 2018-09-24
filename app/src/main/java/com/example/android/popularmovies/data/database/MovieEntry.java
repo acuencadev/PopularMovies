@@ -3,11 +3,13 @@ package com.example.android.popularmovies.data.database;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 @Entity(tableName = "movie")
 public class MovieEntry {
 
     @PrimaryKey
+    @NonNull
     private String id;
 
     @ColumnInfo(name = "image_path")
@@ -110,5 +112,13 @@ public class MovieEntry {
 
     public void setVotes(int votes) {
         this.votes = votes;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
     }
 }
