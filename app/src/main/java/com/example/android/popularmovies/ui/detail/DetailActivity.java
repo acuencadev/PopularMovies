@@ -1,16 +1,18 @@
-package com.example.android.popularmovies;
+package com.example.android.popularmovies.ui.detail;
 
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.popularmovies.BuildConfig;
+import com.example.android.popularmovies.ui.list.MainActivity;
+import com.example.android.popularmovies.R;
 import com.example.android.popularmovies.http.MoviesAPI;
 import com.example.android.popularmovies.http.model.Movie;
 import com.squareup.picasso.Picasso;

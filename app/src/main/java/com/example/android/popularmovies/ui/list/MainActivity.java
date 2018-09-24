@@ -1,4 +1,4 @@
-package com.example.android.popularmovies;
+package com.example.android.popularmovies.ui.list;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,9 +11,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.android.popularmovies.BuildConfig;
+import com.example.android.popularmovies.R;
 import com.example.android.popularmovies.http.MoviesAPI;
 import com.example.android.popularmovies.http.model.Movie;
 import com.example.android.popularmovies.http.model.MoviesResponse;
+import com.example.android.popularmovies.ui.detail.DetailActivity;
+import com.example.android.popularmovies.ui.settings.SettingsActivity;
 
 import butterknife.BindString;
 import butterknife.BindView;
