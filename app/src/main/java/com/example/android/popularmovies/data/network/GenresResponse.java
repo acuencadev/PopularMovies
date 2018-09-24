@@ -1,5 +1,6 @@
 package com.example.android.popularmovies.data.network;
 
+import com.example.android.popularmovies.data.network.models.Genre;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
