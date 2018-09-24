@@ -24,9 +24,6 @@ public abstract class MoviesDatabase extends RoomDatabase {
                     sInstance = Room.databaseBuilder(context.getApplicationContext(),
                             MoviesDatabase.class,
                             MoviesDatabase.DATABASE_NAME)
-                            // Queries should be done in a separate thread to avoid locking the UI
-                            // We will allow this ONLY TEMPORALLY to see that our DB is working.
-                            .allowMainThreadQueries()
                             .build();
                 }
             }
