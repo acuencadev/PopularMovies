@@ -7,12 +7,15 @@ import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.android.popularmovies.BuildConfig;
 import com.example.android.popularmovies.R;
+import com.example.android.popularmovies.data.database.MovieEntry;
+import com.example.android.popularmovies.data.database.MoviesDatabase;
 import com.example.android.popularmovies.data.network.MoviesAPI;
 import com.example.android.popularmovies.data.network.models.Movie;
 import com.example.android.popularmovies.data.network.MoviesResponse;
@@ -46,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
     Call<MoviesResponse> moviesResponseCall;
 
+    private MoviesDatabase moviesDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +62,18 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String sortBy = prefs.getString(mPrefSortKey, mPrefSortDefault);
+
+        moviesDatabase = MoviesDatabase.getsInstance(getApplicationContext());
+
+        MovieEntry movieEntry = new MovieEntry("1", "/img.png", "/img.png",
+                "2018", "150", "Deadpool", "Action, Adventure",
+                "Released", 1000, 1);
+
+        moviesDatabase.moviesDao().bulkInsert(movieEntry);
+        MovieEntry movieEntry1 = moviesDatabase.moviesDao().getMovies();
+
+        Log.d("MovieEntry", movieEntry1.getDescription());
+
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)

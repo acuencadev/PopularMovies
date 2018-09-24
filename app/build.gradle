@@ -38,4 +38,7 @@ dependencies {
 
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+
+    implementation "android.arch.persistence.room:runtime:$archComponentsVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$archComponentsVersion"
 }

@@ -31,6 +31,7 @@ ext {
 
     appCompatVersion = '27.1.1'
     constraintLayoutVersion = '1.1.2'
+    archComponentsVersion = '1.1.1'
 
     retrofitVersion = '2.4.0'
     picassoVersion = '2.71828'
