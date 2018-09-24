@@ -1,4 +1,4 @@
-package com.example.android.popularmovies.http.model;
+package com.example.android.popularmovies.data.network.models;
 
 import android.text.TextUtils;
 

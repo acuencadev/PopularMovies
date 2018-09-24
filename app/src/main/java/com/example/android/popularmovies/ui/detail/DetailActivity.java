@@ -13,8 +13,8 @@ import android.widget.Toast;
 import com.example.android.popularmovies.BuildConfig;
 import com.example.android.popularmovies.ui.list.MainActivity;
 import com.example.android.popularmovies.R;
-import com.example.android.popularmovies.http.MoviesAPI;
-import com.example.android.popularmovies.http.model.Movie;
+import com.example.android.popularmovies.data.network.MoviesAPI;
+import com.example.android.popularmovies.data.network.models.Movie;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindString;

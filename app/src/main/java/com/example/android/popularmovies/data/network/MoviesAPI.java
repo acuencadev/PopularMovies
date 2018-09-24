@@ -1,7 +1,6 @@
-package com.example.android.popularmovies.http;
+package com.example.android.popularmovies.data.network;
 
-import com.example.android.popularmovies.http.model.Movie;
-import com.example.android.popularmovies.http.model.MoviesResponse;
+import com.example.android.popularmovies.data.network.models.Movie;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

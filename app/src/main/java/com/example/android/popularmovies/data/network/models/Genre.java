@@ -1,23 +1,23 @@
-package com.example.android.popularmovies.http.model;
+package com.example.android.popularmovies.data.network.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ProductionCountry {
+public class Genre {
 
-    @SerializedName("iso_3166_1")
+    @SerializedName("id")
     @Expose
-    private String iso31661;
+    private Integer id;
     @SerializedName("name")
     @Expose
     private String name;
 
-    public String getIso31661() {
-        return iso31661;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIso31661(String iso31661) {
-        this.iso31661 = iso31661;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -28,4 +28,8 @@ public class ProductionCountry {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }
