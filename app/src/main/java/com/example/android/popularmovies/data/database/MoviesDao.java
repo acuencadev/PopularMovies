@@ -5,14 +5,16 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
+import java.util.List;
+
 @Dao
 public interface MoviesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void bulkInsert(MovieEntry... entries);
 
-    @Query("SELECT * FROM movie")
-    MovieEntry getMovies();
+    @Query("SELECT * FROM movie WHERE page = :page")
+    List<MovieEntry> getMoviesByPage(int page);
 
     @Query("DELETE FROM movie")
     void deleteOldMovies();
