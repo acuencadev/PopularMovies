@@ -1,5 +1,6 @@
 package com.example.android.popularmovies.data.database;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
@@ -14,10 +15,10 @@ public interface MoviesDao {
     void bulkInsert(MovieEntry... entries);
 
     @Query("SELECT * FROM movie WHERE page = :page")
-    List<MovieEntry> getMoviesByPage(int page);
+    LiveData<List<MovieEntry>> getMoviesByPage(int page);
 
     @Query("SELECT * FROM movie WHERE id = :id")
-    MovieEntry getMovieById(String id);
+    LiveData<MovieEntry> getMovieById(String id);
 
     @Query("DELETE FROM movie")
     void deleteOldMovies();
