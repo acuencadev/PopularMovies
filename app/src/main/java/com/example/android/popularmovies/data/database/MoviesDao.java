@@ -16,6 +16,9 @@ public interface MoviesDao {
     @Query("SELECT * FROM movie WHERE page = :page")
     List<MovieEntry> getMoviesByPage(int page);
 
+    @Query("SELECT * FROM movie WHERE id = :id")
+    MovieEntry getMovieById(String id);
+
     @Query("DELETE FROM movie")
     void deleteOldMovies();
 
