@@ -41,4 +41,6 @@ dependencies {
 
     implementation "android.arch.persistence.room:runtime:$archComponentsVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$archComponentsVersion"
+
+    implementation "android.arch.lifecycle:extensions:$archComponentsVersion"
 }
