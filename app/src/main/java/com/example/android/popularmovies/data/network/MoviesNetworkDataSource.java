@@ -7,6 +7,9 @@ import android.content.Context;
 import com.example.android.popularmovies.AppExecutors;
 import com.example.android.popularmovies.data.database.MovieEntry;
 
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class MoviesNetworkDataSource {
 
     private static final Object LOCK = new Object();
@@ -14,8 +17,9 @@ public class MoviesNetworkDataSource {
 
     private final Context mContext;
     private final AppExecutors mExecutors;
+    private final MoviesAPI mAPI;
 
-    private final MutableLiveData<MovieEntry[]> mDownloadedMovies;
+    private final String API_URL = "https://api.themoviedb.org/3/";
 
     public synchronized static MoviesNetworkDataSource getInstance(Context context,
                                                                    AppExecutors executors) {
@@ -33,11 +37,12 @@ public class MoviesNetworkDataSource {
     private MoviesNetworkDataSource(Context context, AppExecutors executors) {
         mContext = context;
         mExecutors = executors;
-        mDownloadedMovies = new MutableLiveData<>();
-    }
 
-    public LiveData<MovieEntry[]> getDownloadedMovies() {
-        return mDownloadedMovies;
-    }
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
+        mAPI = retrofit.create(MoviesAPI.class);
+    }
 }
