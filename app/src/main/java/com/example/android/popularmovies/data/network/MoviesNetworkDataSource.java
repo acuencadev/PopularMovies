@@ -1,11 +1,8 @@
 package com.example.android.popularmovies.data.network;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 
 import com.example.android.popularmovies.AppExecutors;
-import com.example.android.popularmovies.data.database.MovieEntry;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -45,4 +42,5 @@ public class MoviesNetworkDataSource {
 
         mAPI = retrofit.create(MoviesAPI.class);
     }
+
 }
