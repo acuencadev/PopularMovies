@@ -12,9 +12,6 @@ public interface MoviesAPI {
     @GET("movie/{id}")
     Call<Movie> getMovie(@Path("id") int id, @Query("api_key") String apiKey);
 
-    @GET("discover/movie")
-    Call<MoviesResponse> getMovies(@Query("api_key") String apiKey, @Query("sort_by") String sort);
-
     @GET("movie/top_rated")
     Call<MoviesResponse> getTopRatedMovies(@Query("api_key") String apiKey, @Query("page") int page);
 
