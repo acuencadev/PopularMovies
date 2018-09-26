@@ -24,4 +24,12 @@ public class MainActivityViewModel extends ViewModel {
     public LiveData<List<MovieEntry>> getMovies() {
         return mMovies;
     }
+
+    public LiveData<List<MovieEntry>> getTopRatedMovies(int page) {
+        return mRepository.getTopRatedMovies(page);
+    }
+
+    public LiveData<List<MovieEntry>> getPopularMovies(int page) {
+        return mRepository.getPopularMovies(page);
+    }
 }
