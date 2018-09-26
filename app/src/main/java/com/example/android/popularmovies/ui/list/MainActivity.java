@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         MoviesAPI api = retrofit.create(MoviesAPI.class);
 
-        moviesResponseCall = sortBy.equals(mPrefSortDefault) ? api.getPopularMovies(BuildConfig.MOVIES_API) : api.getTopRatedMovies(BuildConfig.MOVIES_API);
+        moviesResponseCall = sortBy.equals(mPrefSortDefault) ? api.getPopularMovies(BuildConfig.MOVIES_API, 1) : api.getTopRatedMovies(BuildConfig.MOVIES_API, 1);
 
         moviesResponseCall.enqueue(new Callback<MoviesResponse>() {
             @Override
