@@ -1,9 +1,18 @@
 package com.example.android.popularmovies.data.network;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 
 import com.example.android.popularmovies.AppExecutors;
+import com.example.android.popularmovies.BuildConfig;
+import com.example.android.popularmovies.data.network.models.Movie;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -41,6 +50,42 @@ public class MoviesNetworkDataSource {
                 .build();
 
         mAPI = retrofit.create(MoviesAPI.class);
+    }
+
+    public LiveData<List<Movie>> getPopularMovies(int page) {
+        final MutableLiveData<List<Movie>> data = new MutableLiveData<>();
+
+        mAPI.getPopularMovies(BuildConfig.MOVIES_API, page).enqueue(new Callback<MoviesResponse>() {
+            @Override
+            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                data.setValue(response.body().getMovies());
+            }
+
+            @Override
+            public void onFailure(Call<MoviesResponse> call, Throwable t) {
+
+            }
+        });
+
+        return data;
+    }
+
+    public LiveData<List<Movie>> getTopRatedMovies(int page) {
+        final MutableLiveData<List<Movie>> data = new MutableLiveData<>();
+
+        mAPI.getTopRatedMovies(BuildConfig.MOVIES_API, page).enqueue(new Callback<MoviesResponse>() {
+            @Override
+            public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
+                data.setValue(response.body().getMovies());
+            }
+
+            @Override
+            public void onFailure(Call<MoviesResponse> call, Throwable t) {
+
+            }
+        });
+
+        return data;
     }
 
 }
