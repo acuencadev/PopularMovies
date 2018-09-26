@@ -9,16 +9,14 @@ import com.example.android.popularmovies.data.MoviesRepository;
 public class MainActivityViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     private final MoviesRepository mRepository;
-    private final int mPage;
 
-    public MainActivityViewModelFactory(MoviesRepository repository, int page) {
+    public MainActivityViewModelFactory(MoviesRepository repository) {
         this.mRepository = repository;
-        this.mPage = page;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new MainActivityViewModel(mRepository, mPage);
+        return (T) new MainActivityViewModel(mRepository);
     }
 }

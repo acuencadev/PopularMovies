@@ -13,12 +13,10 @@ public class MainActivityViewModel extends ViewModel {
 
     private final LiveData<List<MovieEntry>> mMovies;
     private final MoviesRepository mRepository;
-    private final int mPage;
 
-    public MainActivityViewModel(MoviesRepository repository, int page) {
+    public MainActivityViewModel(MoviesRepository repository) {
         mRepository = repository;
         mMovies = new MutableLiveData<>();
-        mPage = page;
     }
 
     public LiveData<List<MovieEntry>> getMovies() {
