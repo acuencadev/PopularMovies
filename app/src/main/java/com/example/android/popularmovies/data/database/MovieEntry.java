@@ -19,16 +19,16 @@ public class MovieEntry {
     private String backdropPath;
 
     private String year;
-    private String length;
     private String description;
     private String genres;
     private String status;
 
+    private int length;
     private int votes;
     private int page;
 
 
-    public MovieEntry(String id, String imagePath, String backdropPath, String year, String length, String description,
+    public MovieEntry(String id, String imagePath, String backdropPath, String year, int length, String description,
                       String genres, String status, int votes, int page) {
         this.id = id;
         this.imagePath = imagePath;
@@ -74,11 +74,11 @@ public class MovieEntry {
         this.year = year;
     }
 
-    public String getLength() {
+    public int getLength() {
         return length;
     }
 
-    public void setLength(String length) {
+    public void setLength(int length) {
         this.length = length;
     }
 

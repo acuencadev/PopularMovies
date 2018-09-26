@@ -24,7 +24,7 @@ public class MovieToMovieEntryConverter {
                 movie.getPosterPath(),
                 movie.getBackdropPath(),
                 movie.getReleaseDate().substring(0, 4),
-                movie.getRuntimeString(),
+                movie.getRuntime(),
                 movie.getTitle(),
                 movie.getGenresString(),
                 movie.getStatus(),
