@@ -49,42 +49,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
         void onItemClick(MovieEntry movie);
     }
 
-    class MovieListViewHolder extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.movie_list_item_poster_imageView)
-        ImageView posterImageView;
-
-        @BindView(R.id.movie_list_item_title_textView)
-        TextView titleTextView;
-
-        @BindView(R.id.movie_list_item_release_date_textView)
-        TextView releaseDateTextView;
-
-        @BindView(R.id.movie_list_item_votes_textView)
-        TextView votesTextView;
-
-        public MovieListViewHolder(View itemView) {
-            super(itemView);
-
-            ButterKnife.bind(this, itemView);
-        }
-
-        public void bind(final MovieEntry movie, final OnItemClickListener listener) {
-            titleTextView.setText(movie.getDescription());
-            releaseDateTextView.setText(movie.getReleaseDate());
-            votesTextView.setText(movie.getVotes());
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onItemClick(movie);
-                }
-            });
-
-            Picasso.get().load(POSTER_URL + movie.getImagePath()).into(posterImageView);
-        }
-    }
-
     class MovieGridViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.movie_grid_item_poster_imageView)
