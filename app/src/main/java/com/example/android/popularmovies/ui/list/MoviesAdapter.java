@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.popularmovies.R;
+import com.example.android.popularmovies.data.database.MovieEntry;
 import com.example.android.popularmovies.data.network.models.Movie;
 import com.squareup.picasso.Picasso;
 
@@ -20,10 +21,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
 
     private final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
 
-    private List<Movie> movies;
+    private List<MovieEntry> movies;
     private OnItemClickListener listener;
 
-    public MoviesAdapter(List<Movie> movies, OnItemClickListener listener) {
+    public MoviesAdapter(List<MovieEntry> movies, OnItemClickListener listener) {
         this.movies = movies;
         this.listener = listener;
     }
@@ -45,7 +46,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
     }
 
     interface OnItemClickListener {
-        void onItemClick(Movie movie);
+        void onItemClick(MovieEntry movie);
     }
 
     class MovieListViewHolder extends RecyclerView.ViewHolder {
@@ -68,10 +69,10 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(final Movie movie, final OnItemClickListener listener) {
-            titleTextView.setText(movie.getTitle());
-            releaseDateTextView.setText(movie.getReleaseDate());
-            votesTextView.setText(movie.getVoteString());
+        public void bind(final MovieEntry movie, final OnItemClickListener listener) {
+            titleTextView.setText(movie.getDescription());
+            releaseDateTextView.setText("");
+            votesTextView.setText(movie.getVotes());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -80,7 +81,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
                 }
             });
 
-            Picasso.get().load(POSTER_URL + movie.getPosterPath()).into(posterImageView);
+            Picasso.get().load(POSTER_URL + movie.getImagePath()).into(posterImageView);
         }
     }
 
@@ -95,7 +96,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(final Movie movie, final OnItemClickListener listener) {
+        public void bind(final MovieEntry movie, final OnItemClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -103,7 +104,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
                 }
             });
 
-            Picasso.get().load(POSTER_URL + movie.getPosterPath()).into(posterImageView);
+            Picasso.get().load(POSTER_URL + movie.getImagePath()).into(posterImageView);
         }
     }
 
