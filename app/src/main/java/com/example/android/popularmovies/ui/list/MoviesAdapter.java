@@ -71,7 +71,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
 
         public void bind(final MovieEntry movie, final OnItemClickListener listener) {
             titleTextView.setText(movie.getDescription());
-            releaseDateTextView.setText("");
+            releaseDateTextView.setText(movie.getReleaseDate());
             votesTextView.setText(movie.getVotes());
 
             itemView.setOnClickListener(new View.OnClickListener() {
