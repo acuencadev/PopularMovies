@@ -28,6 +28,7 @@ public class MovieToMovieEntryConverter {
                 movie.getTitle(),
                 movie.getGenresString(),
                 movie.getStatus(),
+                movie.getReleaseDate(),
                 movie.getVoteCount(),
                 page);
 
