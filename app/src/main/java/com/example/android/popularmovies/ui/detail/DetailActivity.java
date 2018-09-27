@@ -1,6 +1,7 @@
 package com.example.android.popularmovies.ui.detail;
 
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.popularmovies.BuildConfig;
+import com.example.android.popularmovies.databinding.ActivityDetailBinding;
 import com.example.android.popularmovies.ui.list.MainActivity;
 import com.example.android.popularmovies.R;
 import com.example.android.popularmovies.data.network.MoviesAPI;
@@ -33,45 +35,18 @@ public class DetailActivity extends AppCompatActivity {
 
     Movie movie;
 
-    @BindView(R.id.activity_detail_poster_imageView)
-    ImageView mPosterImageView;
-
-    @BindView(R.id.activity_detail_year_textView)
-    TextView mYearTextView;
-
-    @BindView(R.id.activity_detail_status_textView)
-    TextView mStatusTextView;
-
-    @BindView(R.id.activity_detail_length_textView)
-    TextView mLengthTextView;
-
-    @BindView(R.id.activity_detail_votes_textView)
-    TextView mVotesTextView;
-
-    @BindView(R.id.activity_detail_genres_textView)
-    TextView mGenresTextView;
-
-    @BindView(R.id.activity_detail_description_textView)
-    TextView mDescriptionTextView;
-
-    @BindView(R.id.activity_detail_loading_progressBar)
-    ProgressBar mLoadingProgressBar;
-
-    @BindView(R.id.activity_detail_main_constraintLayout)
-    ConstraintLayout mMainConstraintLayout;
-
-    @BindString(R.string.error_displaying_movie)
-    String mErrorDisplayingMovie;
+    ActivityDetailBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        mBinding = DataBindingUtil.setContentView(this,
+                R.layout.activity_detail);
+
         Intent intent = getIntent();
         int id = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
-
-        ButterKnife.bind(this);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
@@ -80,8 +55,8 @@ public class DetailActivity extends AppCompatActivity {
 
         MoviesAPI api = retrofit.create(MoviesAPI.class);
 
-        mLoadingProgressBar.setVisibility(View.VISIBLE);
-        mMainConstraintLayout.setVisibility(View.INVISIBLE);
+        mBinding.activityDetailLoadingProgressBar.setVisibility(View.VISIBLE);
+        mBinding.activityDetailMainConstraintLayout.setVisibility(View.INVISIBLE);
 
         api.getMovie(id, BuildConfig.MOVIES_API).enqueue(new Callback<Movie>() {
             @Override
@@ -90,8 +65,8 @@ public class DetailActivity extends AppCompatActivity {
                     movie = response.body();
                     populateViews(movie);
 
-                    mLoadingProgressBar.setVisibility(View.INVISIBLE);
-                    mMainConstraintLayout.setVisibility(View.VISIBLE);
+                    mBinding.activityDetailLoadingProgressBar.setVisibility(View.INVISIBLE);
+                    mBinding.activityDetailMainConstraintLayout.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -99,24 +74,24 @@ public class DetailActivity extends AppCompatActivity {
             public void onFailure(Call<Movie> call, Throwable t) {
                 t.printStackTrace();
                 Toast.makeText(DetailActivity.this,
-                        mErrorDisplayingMovie, Toast.LENGTH_LONG).show();
+                        getString(R.string.error_displaying_movie), Toast.LENGTH_LONG).show();
             }
         });
     }
 
     private void populateViews(Movie movie) {
         DetailActivity.this.setTitle(movie.getTitle());
-        Picasso.get().load(POSTER_URL + movie.getPosterPath()).into(mPosterImageView);
+        Picasso.get().load(POSTER_URL + movie.getPosterPath()).into(mBinding.activityDetailPosterImageView);
 
-        mDescriptionTextView.setText(movie.getOverview());
-        mStatusTextView.setText(movie.getStatus());
+        mBinding.activityDetailDescriptionTextView.setText(movie.getOverview());
+        mBinding.activityDetailStatusTextView.setText(movie.getStatus());
 
         String releaseYear = movie.getReleaseDate().substring(0, 4);
-        mYearTextView.setText(releaseYear);
+        mBinding.activityDetailYearTextView.setText(releaseYear);
 
-        mVotesTextView.setText(movie.getVoteString());
-        mGenresTextView.setText(movie.getGenresString());
+        mBinding.activityDetailVotesTextView.setText(movie.getVoteString());
+        mBinding.activityDetailGenresTextView.setText(movie.getGenresString());
 
-        mLengthTextView.setText(movie.getRuntimeString());
+        mBinding.activityDetailLengthTextView.setText(movie.getRuntimeString());
     }
 }
