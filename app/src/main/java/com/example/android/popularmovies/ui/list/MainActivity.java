@@ -1,5 +1,6 @@
 package com.example.android.popularmovies.ui.list;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 
 import com.example.android.popularmovies.R;
 import com.example.android.popularmovies.ui.settings.SettingsActivity;
+import com.example.android.popularmovies.utility.InjectorUtils;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -22,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.android.popularmovies.MESSAGEMOVIEID";
 
     MoviesAdapter mMoviesAdapter;
+    MainActivityViewModel mViewModel;
 
     @BindView(R.id.activity_main_movies_recyclerView)
     RecyclerView mMoviesRecyclerView;
@@ -42,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         String sortBy = prefs.getString(mPrefSortKey, mPrefSortDefault);
+
+        MainActivityViewModelFactory factory = InjectorUtils.provideMainActivityViewModelFactory(
+                this.getApplicationContext());
+        mViewModel = ViewModelProviders.of(this, factory).get(MainActivityViewModel.class);
     }
 
     @Override
