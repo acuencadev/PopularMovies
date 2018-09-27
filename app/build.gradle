@@ -19,6 +19,9 @@ android {
     buildTypes.each {
         it.buildConfigField 'String', 'MOVIES_API', MoviesApi
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
