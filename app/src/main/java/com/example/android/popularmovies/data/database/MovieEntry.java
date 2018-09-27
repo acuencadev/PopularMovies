@@ -23,13 +23,16 @@ public class MovieEntry {
     private String genres;
     private String status;
 
+    @ColumnInfo(name = "release_date")
+    private String releaseDate;
+
     private int length;
     private int votes;
     private int page;
 
 
     public MovieEntry(String id, String imagePath, String backdropPath, String year, int length, String description,
-                      String genres, String status, int votes, int page) {
+                      String genres, String status, String releaseDate, int votes, int page) {
         this.id = id;
         this.imagePath = imagePath;
         this.backdropPath = backdropPath;
@@ -38,6 +41,7 @@ public class MovieEntry {
         this.description = description;
         this.genres = genres;
         this.status = status;
+        this.releaseDate = releaseDate;
         this.votes = votes;
         this.page = page;
     }
@@ -120,5 +124,13 @@ public class MovieEntry {
 
     public void setPage(int page) {
         this.page = page;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
     }
 }
