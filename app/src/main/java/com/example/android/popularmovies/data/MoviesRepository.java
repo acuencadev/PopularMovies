@@ -3,9 +3,9 @@ package com.example.android.popularmovies.data;
 import android.arch.lifecycle.LiveData;
 
 import com.example.android.popularmovies.AppExecutors;
-import com.example.android.popularmovies.data.database.MovieEntry;
 import com.example.android.popularmovies.data.database.MoviesDao;
 import com.example.android.popularmovies.data.network.MoviesNetworkDataSource;
+import com.example.android.popularmovies.data.network.models.Movie;
 
 import java.util.List;
 
@@ -39,13 +39,15 @@ public class MoviesRepository {
         this.mMoviesNetworkDataSource = moviesNetworkDataSource;
     }
 
-    public LiveData<List<MovieEntry>> getTopRatedMovies(int page) {
-        //TODO: Implement getTopRatedMovies() logic
-        return null;
+    public LiveData<List<Movie>> getTopRatedMovies(int page) {
+        return mMoviesNetworkDataSource.getTopRatedMovies(page);
     }
 
-    public LiveData<List<MovieEntry>> getPopularMovies(int page) {
-        //TODO: Implement getPopularMovies() logic
-        return null;
+    public LiveData<List<Movie>> getPopularMovies(int page) {
+        return mMoviesNetworkDataSource.getPopularMovies(page);
+    }
+
+    public LiveData<Movie> getMovie(int id) {
+        return mMoviesNetworkDataSource.getMovie(id);
     }
 }
