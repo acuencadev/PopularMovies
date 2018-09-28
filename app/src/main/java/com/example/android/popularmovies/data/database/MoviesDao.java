@@ -12,9 +12,6 @@ import java.util.List;
 public interface MoviesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void bulkInsert(MovieEntry... entries);
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(MovieEntry entry);
 
     @Query("SELECT * FROM movie WHERE page = :page")
@@ -25,8 +22,5 @@ public interface MoviesDao {
 
     @Query("SELECT * FROM movie WHERE id = :id")
     LiveData<MovieEntry> getMovieById(String id);
-
-    @Query("DELETE FROM movie")
-    void deleteOldMovies();
 
 }
