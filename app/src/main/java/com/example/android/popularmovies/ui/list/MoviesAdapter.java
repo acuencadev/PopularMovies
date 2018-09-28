@@ -1,5 +1,6 @@
 package com.example.android.popularmovies.ui.list;
 
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,43 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
     @Override
     public int getItemCount() {
         return movies.size();
+    }
+
+    public void swapMovies(final List<Movie> movieList) {
+        if (movies == null) {
+            movies = movieList;
+            notifyDataSetChanged();
+        } else {
+            DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+                @Override
+                public int getOldListSize() {
+                    return movies.size();
+                }
+
+                @Override
+                public int getNewListSize() {
+                    return movieList.size();
+                }
+
+                @Override
+                public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+                    return movies.get(oldItemPosition).getId() == movieList.get(newItemPosition).getId();
+                }
+
+                @Override
+                public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+                    Movie oldMovie = movies.get(oldItemPosition);
+                    Movie newMovie = movieList.get(newItemPosition);
+
+                    return oldMovie.getId() == newMovie.getId()
+                            && oldMovie.getVoteCount() == newMovie.getVoteCount()
+                            && oldMovie.getVoteAverage() == newMovie.getVoteAverage();
+                }
+            });
+
+            movies = movieList;
+            result.dispatchUpdatesTo(this);
+        }
     }
 
     interface OnItemClickListener {
