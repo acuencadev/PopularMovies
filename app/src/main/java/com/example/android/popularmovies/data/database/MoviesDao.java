@@ -17,6 +17,9 @@ public interface MoviesDao {
     @Query("SELECT * FROM movie WHERE page = :page")
     LiveData<List<MovieEntry>> getMoviesByPage(int page);
 
+    @Query("SELECT * FROM movie")
+    LiveData<List<MovieEntry>> getMovies();
+
     @Query("SELECT * FROM movie WHERE id = :id")
     LiveData<MovieEntry> getMovieById(String id);
 
