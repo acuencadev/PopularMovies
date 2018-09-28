@@ -14,6 +14,9 @@ public interface MoviesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void bulkInsert(MovieEntry... entries);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(MovieEntry entry);
+
     @Query("SELECT * FROM movie WHERE page = :page")
     LiveData<List<MovieEntry>> getMoviesByPage(int page);
 
