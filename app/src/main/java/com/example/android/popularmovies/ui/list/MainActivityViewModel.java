@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MainActivityViewModel extends ViewModel {
 
-    private final LiveData<List<Movie>> mMovies;
+    private LiveData<List<Movie>> mMovies;
     private final MoviesRepository mRepository;
 
     public MainActivityViewModel(MoviesRepository repository) {
@@ -29,5 +29,13 @@ public class MainActivityViewModel extends ViewModel {
 
     public LiveData<List<Movie>> getPopularMovies(int page) {
         return mRepository.getPopularMovies(page);
+    }
+
+    public void pullTopRatedMovies(int page) {
+        mMovies = mRepository.getTopRatedMovies(page);
+    }
+
+    public void pullPopularMovies(int page) {
+        mMovies = mRepository.getPopularMovies(page);
     }
 }
