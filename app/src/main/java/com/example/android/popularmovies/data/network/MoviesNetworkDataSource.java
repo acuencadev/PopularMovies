@@ -88,4 +88,22 @@ public class MoviesNetworkDataSource {
         return data;
     }
 
+    public LiveData<Movie> getMovie(int id) {
+        final MutableLiveData<Movie> data = new MutableLiveData<>();
+
+        mAPI.getMovie(id, BuildConfig.MOVIES_API).enqueue(new Callback<Movie>() {
+            @Override
+            public void onResponse(Call<Movie> call, Response<Movie> response) {
+                data.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Movie> call, Throwable t) {
+
+            }
+        });
+
+        return data;
+    }
+
 }
