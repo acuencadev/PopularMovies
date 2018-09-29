@@ -7,6 +7,7 @@ import android.content.Context;
 import com.example.android.popularmovies.AppExecutors;
 import com.example.android.popularmovies.BuildConfig;
 import com.example.android.popularmovies.data.network.models.Movie;
+import com.example.android.popularmovies.data.network.models.Trailer;
 
 import java.util.List;
 
@@ -99,6 +100,24 @@ public class MoviesNetworkDataSource {
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
+
+            }
+        });
+
+        return data;
+    }
+
+    public LiveData<List<Trailer>> getTrailers(int id) {
+        final MutableLiveData<List<Trailer>> data = new MutableLiveData<>();
+
+        mAPI.getMovieTrailers(id, BuildConfig.MOVIES_API).enqueue(new Callback<TrailerResponse>() {
+            @Override
+            public void onResponse(Call<TrailerResponse> call, Response<TrailerResponse> response) {
+                data.setValue(response.body().getResults());
+            }
+
+            @Override
+            public void onFailure(Call<TrailerResponse> call, Throwable t) {
 
             }
         });
