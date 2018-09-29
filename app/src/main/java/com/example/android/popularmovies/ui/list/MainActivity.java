@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import com.example.android.popularmovies.R;
 import com.example.android.popularmovies.data.network.models.Movie;
 import com.example.android.popularmovies.databinding.ActivityMainBinding;
+import com.example.android.popularmovies.ui.detail.DetailActivity;
 import com.example.android.popularmovies.ui.settings.SettingsActivity;
 import com.example.android.popularmovies.utility.InjectorUtils;
 
@@ -118,7 +119,10 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onItemClick(Movie movie) {
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra(EXTRA_MESSAGE, movie.getId());
 
+        startActivity(intent);
     }
 
     @Override
