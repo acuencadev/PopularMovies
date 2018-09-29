@@ -3,18 +3,22 @@ package com.example.android.popularmovies.ui.detail;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
+import com.example.android.popularmovies.data.MoviesRepository;
 import com.example.android.popularmovies.data.database.MovieEntry;
 import com.example.android.popularmovies.data.database.MoviesDatabase;
+import com.example.android.popularmovies.data.network.models.Movie;
 
 public class DetailActivityViewModel extends ViewModel {
 
-    private LiveData<MovieEntry> movie;
+    private LiveData<Movie> movie;
+    private final MoviesRepository repository;
 
-    public DetailActivityViewModel(MoviesDatabase database, String movieId) {
-        movie = database.moviesDao().getMovieById(movieId);
+    public DetailActivityViewModel(MoviesRepository repository, int movieId) {
+        this.repository = repository;
+        this.movie = repository.getMovie(movieId);
     }
 
-    public LiveData<MovieEntry> getMovie() {
-        return movie;
+    public LiveData<Movie> getMovie() {
+        return this.movie;
     }
 }

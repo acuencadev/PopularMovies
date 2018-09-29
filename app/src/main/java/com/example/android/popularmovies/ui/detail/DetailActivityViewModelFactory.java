@@ -4,21 +4,22 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
+import com.example.android.popularmovies.data.MoviesRepository;
 import com.example.android.popularmovies.data.database.MoviesDatabase;
 
 public class DetailActivityViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
-    private final MoviesDatabase mDb;
-    private final String mMovieId;
+    private final MoviesRepository mRepository;
+    private final int mMovieId;
 
-    public DetailActivityViewModelFactory(MoviesDatabase db, String movieId) {
-        this.mDb = db;
+    public DetailActivityViewModelFactory(MoviesRepository repository, int movieId) {
+        this.mRepository = repository;
         this.mMovieId = movieId;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new DetailActivityViewModel(mDb, mMovieId);
+        return (T) new DetailActivityViewModel(mRepository, mMovieId);
     }
 }
