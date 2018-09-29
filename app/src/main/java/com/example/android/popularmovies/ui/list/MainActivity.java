@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity
 
     public static final String EXTRA_MESSAGE = "com.example.android.popularmovies.MESSAGEMOVIEID";
 
+    private static final String CURRENT_PAGE = "current_page";
+
     MoviesAdapter mMoviesAdapter;
     MainActivityViewModel mViewModel;
 
@@ -35,6 +37,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        if (savedInstanceState != null) {
+            mCurrentPage = savedInstanceState.getInt(CURRENT_PAGE);
+        }
 
         mMoviesAdapter = new MoviesAdapter(this, this);
 
@@ -67,6 +73,17 @@ public class MainActivity extends AppCompatActivity
 
         PreferenceManager.getDefaultSharedPreferences(this)
                 .unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt(CURRENT_PAGE, mCurrentPage);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        swapMoviesInView();
     }
 
     @Override
