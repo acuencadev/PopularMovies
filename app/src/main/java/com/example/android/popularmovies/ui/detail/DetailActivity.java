@@ -1,7 +1,10 @@
 package com.example.android.popularmovies.ui.detail;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +20,7 @@ import com.example.android.popularmovies.ui.list.MainActivity;
 import com.example.android.popularmovies.R;
 import com.example.android.popularmovies.data.network.MoviesAPI;
 import com.example.android.popularmovies.data.network.models.Movie;
+import com.example.android.popularmovies.utility.InjectorUtils;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindString;
@@ -31,11 +35,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DetailActivity extends AppCompatActivity {
 
     private final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
-    private final String API_URL = "https://api.themoviedb.org/3/";
+    //private final String API_URL = "https://api.themoviedb.org/3/";
 
-    Movie movie;
+    //Movie movie;
 
     ActivityDetailBinding mBinding;
+    DetailActivityViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +53,19 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int id = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
 
+        /*
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
+
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         MoviesAPI api = retrofit.create(MoviesAPI.class);
-
+        */
         mBinding.activityDetailLoadingProgressBar.setVisibility(View.VISIBLE);
         mBinding.activityDetailMainConstraintLayout.setVisibility(View.INVISIBLE);
 
+        /*
         api.getMovie(id, BuildConfig.MOVIES_API).enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
@@ -77,6 +85,22 @@ public class DetailActivity extends AppCompatActivity {
                         getString(R.string.error_displaying_movie), Toast.LENGTH_LONG).show();
             }
         });
+        */
+
+        DetailActivityViewModelFactory factory = InjectorUtils.provideDetailActivityViewModelFactory(
+                this.getApplicationContext(),
+                id);
+        mViewModel = ViewModelProviders.of(this, factory).get(DetailActivityViewModel.class);
+        mViewModel.getMovie().observe(this, new Observer<Movie>() {
+            @Override
+            public void onChanged(@Nullable Movie movie) {
+                populateViews(movie);
+
+                mBinding.activityDetailLoadingProgressBar.setVisibility(View.INVISIBLE);
+                mBinding.activityDetailMainConstraintLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 
     private void populateViews(Movie movie) {
