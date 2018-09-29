@@ -1,5 +1,6 @@
 package com.example.android.popularmovies.ui.list;
 
+import android.content.Context;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,11 +21,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridV
 
     private static final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
 
+    private final Context mContext;
+
     private List<Movie> movies;
     private OnItemClickListener listener;
 
-    public MoviesAdapter(List<Movie> movies, OnItemClickListener listener) {
-        this.movies = movies;
+    public MoviesAdapter(Context context, OnItemClickListener listener) {
+        this.mContext = context;
         this.listener = listener;
     }
 
