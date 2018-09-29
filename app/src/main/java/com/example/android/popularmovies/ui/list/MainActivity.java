@@ -30,13 +30,6 @@ public class MainActivity extends AppCompatActivity {
 
     private int mCurrentPage = 1;
 
-    //TODO: Remove Butterknife elements
-    //@BindView(R.id.activity_main_movies_recyclerView)
-    //RecyclerView mMoviesRecyclerView;
-    //@BindString(R.string.pref_sort_key) String mPrefSortKey;
-    //@BindString(R.string.pref_sort_default) String mPrefSortDefault;
-    //@BindString(R.string.error_displaying_movies) String mErrorDisplayingMovies;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
