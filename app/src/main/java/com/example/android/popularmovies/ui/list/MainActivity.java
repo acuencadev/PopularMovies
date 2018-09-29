@@ -22,7 +22,7 @@ import com.example.android.popularmovies.utility.InjectorUtils;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements MoviesAdapter.OnItemClickListener {
+        implements MoviesAdapter.OnItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static final String EXTRA_MESSAGE = "com.example.android.popularmovies.MESSAGEMOVIEID";
 
@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity
 
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .registerOnSharedPreferenceChangeListener(this);
+
         binding.activityMainMoviesRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
         binding.activityMainMoviesRecyclerView.setAdapter(mMoviesAdapter);
         binding.activityMainMoviesRecyclerView.setHasFixedSize(true);
@@ -56,6 +59,14 @@ public class MainActivity extends AppCompatActivity
         });
 
         swapMoviesInView();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -78,8 +89,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void swapMoviesInView() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String sortBy = prefs.getString(getString(R.string.pref_sort_key), getString(R.string.pref_sort_default));
+        String sortBy = PreferenceManager.getDefaultSharedPreferences(this)
+                .getString(getString(R.string.pref_sort_key), getString(R.string.pref_sort_default));
 
         if (sortBy.equals(getString(R.string.pref_sort_default))) {
             mViewModel.pullPopularMovies(mCurrentPage);
@@ -91,5 +102,12 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onItemClick(Movie movie) {
 
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.pref_sort_key))) {
+            swapMoviesInView();
+        }
     }
 }
