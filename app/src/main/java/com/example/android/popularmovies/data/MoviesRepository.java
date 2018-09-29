@@ -6,6 +6,7 @@ import com.example.android.popularmovies.AppExecutors;
 import com.example.android.popularmovies.data.database.MoviesDao;
 import com.example.android.popularmovies.data.network.MoviesNetworkDataSource;
 import com.example.android.popularmovies.data.network.models.Movie;
+import com.example.android.popularmovies.data.network.models.Trailer;
 
 import java.util.List;
 
@@ -49,5 +50,9 @@ public class MoviesRepository {
 
     public LiveData<Movie> getMovie(int id) {
         return mMoviesNetworkDataSource.getMovie(id);
+    }
+
+    public LiveData<List<Trailer>> getTrailers(int id) {
+        return mMoviesNetworkDataSource.getTrailers(id);
     }
 }
