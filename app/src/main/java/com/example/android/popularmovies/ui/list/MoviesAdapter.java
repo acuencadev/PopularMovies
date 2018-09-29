@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieGridViewHolder> {
 
-    private final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
+    private static final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
 
     private List<Movie> movies;
     private OnItemClickListener listener;
