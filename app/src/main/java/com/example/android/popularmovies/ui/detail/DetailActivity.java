@@ -35,9 +35,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DetailActivity extends AppCompatActivity {
 
     private final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
-    //private final String API_URL = "https://api.themoviedb.org/3/";
-
-    //Movie movie;
 
     ActivityDetailBinding mBinding;
     DetailActivityViewModel mViewModel;
@@ -53,39 +50,8 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int id = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
 
-        /*
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_URL)
-
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        MoviesAPI api = retrofit.create(MoviesAPI.class);
-        */
         mBinding.activityDetailLoadingProgressBar.setVisibility(View.VISIBLE);
         mBinding.activityDetailMainConstraintLayout.setVisibility(View.INVISIBLE);
-
-        /*
-        api.getMovie(id, BuildConfig.MOVIES_API).enqueue(new Callback<Movie>() {
-            @Override
-            public void onResponse(Call<Movie> call, Response<Movie> response) {
-                if (response.isSuccessful()) {
-                    movie = response.body();
-                    populateViews(movie);
-
-                    mBinding.activityDetailLoadingProgressBar.setVisibility(View.INVISIBLE);
-                    mBinding.activityDetailMainConstraintLayout.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Movie> call, Throwable t) {
-                t.printStackTrace();
-                Toast.makeText(DetailActivity.this,
-                        getString(R.string.error_displaying_movie), Toast.LENGTH_LONG).show();
-            }
-        });
-        */
 
         DetailActivityViewModelFactory factory = InjectorUtils.provideDetailActivityViewModelFactory(
                 this.getApplicationContext(),
