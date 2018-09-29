@@ -21,7 +21,8 @@ import com.example.android.popularmovies.utility.InjectorUtils;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements MoviesAdapter.OnItemClickListener {
 
     public static final String EXTRA_MESSAGE = "com.example.android.popularmovies.MESSAGEMOVIEID";
 
@@ -35,9 +36,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mMoviesAdapter = new MoviesAdapter(this, this);
+
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         binding.activityMainMoviesRecyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(), 2));
+        binding.activityMainMoviesRecyclerView.setAdapter(mMoviesAdapter);
+        binding.activityMainMoviesRecyclerView.setHasFixedSize(true);
 
         MainActivityViewModelFactory factory = InjectorUtils.provideMainActivityViewModelFactory(
                 this.getApplicationContext());
@@ -81,5 +86,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             mViewModel.pullTopRatedMovies(mCurrentPage);
         }
+    }
+
+    @Override
+    public void onItemClick(Movie movie) {
+
     }
 }
