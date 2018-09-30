@@ -9,4 +9,13 @@
 
     <string name="error_displaying_movies">Couldn\'t retrieve movies list. Please try again.</string>
     <string name="error_displaying_movie">Couldn\'t load movie info.</string>
+
+    <string name="pref_item_most_popular_key" translatable="false">most_popular</string>
+    <string name="pref_item_most_popular_label">Most Popular</string>
+
+    <string name="pref_item_top_rated_key" translatable="false">top_rated</string>
+    <string name="pref_item_top_rated_label">Top Rated</string>
+
+    <string name="pref_item_favorite_key" translatable="false">favorite</string>
+    <string name="pref_item_favorite_label">Favorite</string>
 </resources>
