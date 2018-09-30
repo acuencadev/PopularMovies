@@ -110,10 +110,12 @@ public class MainActivity extends AppCompatActivity
         String sortBy = PreferenceManager.getDefaultSharedPreferences(this)
                 .getString(getString(R.string.pref_sort_key), getString(R.string.pref_sort_default));
 
-        if (sortBy.equals(getString(R.string.pref_sort_default))) {
+        if (sortBy.equals(getString(R.string.pref_item_most_popular_key))) {
             mViewModel.pullPopularMovies(mCurrentPage);
-        } else {
+        } else if (sortBy.equals(getString(R.string.pref_item_top_rated_key))){
             mViewModel.pullTopRatedMovies(mCurrentPage);
+        } else {
+            //TODO: Pull favorite movies only.
         }
     }
 
