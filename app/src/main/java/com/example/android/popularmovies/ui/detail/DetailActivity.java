@@ -7,8 +7,10 @@ import android.databinding.DataBindingUtil;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
+import com.example.android.popularmovies.data.network.models.Trailer;
 import com.example.android.popularmovies.databinding.ActivityDetailBinding;
 import com.example.android.popularmovies.ui.list.MainActivity;
 import com.example.android.popularmovies.R;
@@ -16,12 +18,16 @@ import com.example.android.popularmovies.data.network.models.Movie;
 import com.example.android.popularmovies.utility.InjectorUtils;
 import com.squareup.picasso.Picasso;
 
-public class DetailActivity extends AppCompatActivity {
+import java.util.List;
+
+public class DetailActivity extends AppCompatActivity
+        implements TrailersAdapter.OnItemClickListener {
 
     private final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
 
     ActivityDetailBinding mBinding;
     DetailActivityViewModel mViewModel;
+    TrailersAdapter mTrailersAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +37,18 @@ public class DetailActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_detail);
 
+        mTrailersAdapter = new TrailersAdapter(this, this);
+
         Intent intent = getIntent();
         int id = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
 
         mBinding.activityDetailLoadingProgressBar.setVisibility(View.VISIBLE);
         mBinding.activityDetailMainConstraintLayout.setVisibility(View.INVISIBLE);
         mBinding.activityDetailFavoriteFloatingActionButton.setVisibility(View.INVISIBLE);
+
+        mBinding.activityDetailTrailersRecyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        mBinding.activityDetailTrailersRecyclerView.setAdapter(mTrailersAdapter);
+        mBinding.activityDetailTrailersRecyclerView.setHasFixedSize(true);
 
         observeMovieData(id);
     }
@@ -72,9 +84,20 @@ public class DetailActivity extends AppCompatActivity {
                 mBinding.activityDetailFavoriteFloatingActionButton.setVisibility(View.VISIBLE);
             }
         });
+        mViewModel.getTrailers().observe(this, new Observer<List<Trailer>>() {
+            @Override
+            public void onChanged(@Nullable List<Trailer> trailers) {
+                mTrailersAdapter.swapTrailers(trailers);
+            }
+        });
     }
 
     public void toggleFavorite(View view) {
         //TODO: Implement toggle favorite logic
+    }
+
+    @Override
+    public void onItemClick(Trailer trailer) {
+        //TODO: Play trailer on Youtube.
     }
 }
