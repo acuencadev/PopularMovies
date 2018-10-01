@@ -54,16 +54,7 @@ public class MainActivity extends AppCompatActivity
         binding.activityMainMoviesRecyclerView.setAdapter(mMoviesAdapter);
         binding.activityMainMoviesRecyclerView.setHasFixedSize(true);
 
-        MainActivityViewModelFactory factory = InjectorUtils.provideMainActivityViewModelFactory(
-                this.getApplicationContext());
-        mViewModel = ViewModelProviders.of(this, factory).get(MainActivityViewModel.class);
-
-        mViewModel.getMovies().observeForever(new Observer<List<Movie>>() {
-            @Override
-            public void onChanged(@Nullable List<Movie> movieList) {
-                mMoviesAdapter.swapMovies(movieList);
-            }
-        });
+        observeMovieData();
 
         swapMoviesInView();
     }
@@ -117,6 +108,19 @@ public class MainActivity extends AppCompatActivity
         } else {
             //TODO: Pull favorite movies only.
         }
+    }
+
+    private void observeMovieData() {
+        MainActivityViewModelFactory factory = InjectorUtils.provideMainActivityViewModelFactory(
+                this.getApplicationContext());
+        mViewModel = ViewModelProviders.of(this, factory).get(MainActivityViewModel.class);
+
+        mViewModel.getMovies().observeForever(new Observer<List<Movie>>() {
+            @Override
+            public void onChanged(@Nullable List<Movie> movieList) {
+                mMoviesAdapter.swapMovies(movieList);
+            }
+        });
     }
 
     @Override
