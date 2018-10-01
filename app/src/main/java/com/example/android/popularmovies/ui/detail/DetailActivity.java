@@ -36,6 +36,7 @@ public class DetailActivity extends AppCompatActivity {
 
         mBinding.activityDetailLoadingProgressBar.setVisibility(View.VISIBLE);
         mBinding.activityDetailMainConstraintLayout.setVisibility(View.INVISIBLE);
+        mBinding.activityDetailFavoriteFloatingActionButton.setVisibility(View.INVISIBLE);
 
         observeMovieData(id);
     }
@@ -68,6 +69,7 @@ public class DetailActivity extends AppCompatActivity {
 
                 mBinding.activityDetailLoadingProgressBar.setVisibility(View.INVISIBLE);
                 mBinding.activityDetailMainConstraintLayout.setVisibility(View.VISIBLE);
+                mBinding.activityDetailFavoriteFloatingActionButton.setVisibility(View.VISIBLE);
             }
         });
     }

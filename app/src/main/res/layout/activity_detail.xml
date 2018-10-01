@@ -21,7 +21,7 @@
                 android:id="@+id/activity_detail_scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-gi
+
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/activity_detail_main_constraintLayout"
                     android:layout_width="match_parent"
@@ -144,6 +144,7 @@ gi
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
             android:clickable="true"
+            android:visibility="invisible"
             app:srcCompat="@drawable/baseline_favorite_white" />
 
     </FrameLayout>
