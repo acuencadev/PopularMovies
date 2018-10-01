@@ -37,20 +37,7 @@ public class DetailActivity extends AppCompatActivity {
         mBinding.activityDetailLoadingProgressBar.setVisibility(View.VISIBLE);
         mBinding.activityDetailMainConstraintLayout.setVisibility(View.INVISIBLE);
 
-        DetailActivityViewModelFactory factory = InjectorUtils.provideDetailActivityViewModelFactory(
-                this.getApplicationContext(),
-                id);
-        mViewModel = ViewModelProviders.of(this, factory).get(DetailActivityViewModel.class);
-        mViewModel.getMovie().observe(this, new Observer<Movie>() {
-            @Override
-            public void onChanged(@Nullable Movie movie) {
-                populateViews(movie);
-
-                mBinding.activityDetailLoadingProgressBar.setVisibility(View.INVISIBLE);
-                mBinding.activityDetailMainConstraintLayout.setVisibility(View.VISIBLE);
-            }
-        });
-
+        observeMovieData(id);
     }
 
     private void populateViews(Movie movie) {
@@ -67,6 +54,22 @@ public class DetailActivity extends AppCompatActivity {
         mBinding.activityDetailGenresTextView.setText(movie.getGenresString());
 
         mBinding.activityDetailLengthTextView.setText(movie.getRuntimeString());
+    }
+
+    private void observeMovieData(int id) {
+        DetailActivityViewModelFactory factory = InjectorUtils.provideDetailActivityViewModelFactory(
+                this.getApplicationContext(),
+                id);
+        mViewModel = ViewModelProviders.of(this, factory).get(DetailActivityViewModel.class);
+        mViewModel.getMovie().observe(this, new Observer<Movie>() {
+            @Override
+            public void onChanged(@Nullable Movie movie) {
+                populateViews(movie);
+
+                mBinding.activityDetailLoadingProgressBar.setVisibility(View.INVISIBLE);
+                mBinding.activityDetailMainConstraintLayout.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     public void toggleFavorite(View view) {
