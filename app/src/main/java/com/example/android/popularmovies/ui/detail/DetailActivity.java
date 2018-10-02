@@ -42,6 +42,9 @@ public class DetailActivity extends AppCompatActivity {
         setupViewPager(mBinding.activityDetailViewpager);
 
         mBinding.activityDetailTabLayout.setupWithViewPager(mBinding.activityDetailViewpager);
+        mBinding.activityDetailTabLayout.getTabAt(0).setIcon(R.drawable.description);
+        mBinding.activityDetailTabLayout.getTabAt(1).setIcon(R.drawable.movie);
+        mBinding.activityDetailTabLayout.getTabAt(2).setIcon(R.drawable.review);
     }
 
     private void setupViewPager(ViewPager viewPager) {
