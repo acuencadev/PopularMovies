@@ -25,8 +25,4 @@ public class DetailActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_detail);
     }
-
-    public void toggleFavorite(View view) {
-        //TODO: Implement toggle favorite logic
-    }
 }
