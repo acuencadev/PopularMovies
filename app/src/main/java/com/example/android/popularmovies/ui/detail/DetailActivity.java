@@ -18,6 +18,8 @@ import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
 
+    private int mMovieId;
+
     ActivityDetailBinding mBinding;
 
     @Override
@@ -26,7 +28,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         Intent intent = getIntent();
-        int id = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
+        mMovieId = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
 
         mBinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_detail);
@@ -42,7 +44,7 @@ public class DetailActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MovieDescriptionFragment(), getString(R.string.tab_movies_description));
-        adapter.addFragment(new MovieTrailersFragment(), getString(R.string.tab_movies_trailers));
+        adapter.addFragment(MovieTrailersFragment.newInstance(mMovieId), getString(R.string.tab_movies_trailers));
         adapter.addFragment(new MovieReviewsFragment(), getString(R.string.tab_movies_reviews));
         viewPager.setAdapter(adapter);
     }
