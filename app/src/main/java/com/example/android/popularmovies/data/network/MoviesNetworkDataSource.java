@@ -7,6 +7,7 @@ import android.content.Context;
 import com.example.android.popularmovies.AppExecutors;
 import com.example.android.popularmovies.BuildConfig;
 import com.example.android.popularmovies.data.network.models.Movie;
+import com.example.android.popularmovies.data.network.models.Review;
 import com.example.android.popularmovies.data.network.models.Trailer;
 
 import java.util.List;
@@ -118,6 +119,24 @@ public class MoviesNetworkDataSource {
 
             @Override
             public void onFailure(Call<TrailersResponse> call, Throwable t) {
+
+            }
+        });
+
+        return data;
+    }
+
+    public LiveData<List<Review>> getReviews(int id, int page) {
+        final MutableLiveData<List<Review>> data = new MutableLiveData<>();
+
+        mAPI.getMovieReviews(id, BuildConfig.MOVIES_API, page).enqueue(new Callback<ReviewsResponse>() {
+            @Override
+            public void onResponse(Call<ReviewsResponse> call, Response<ReviewsResponse> response) {
+                data.setValue(response.body().getResults());
+            }
+
+            @Override
+            public void onFailure(Call<ReviewsResponse> call, Throwable t) {
 
             }
         });
