@@ -1,5 +1,6 @@
 package com.example.android.popularmovies.ui.detail;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -11,12 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.popularmovies.R;
+import com.example.android.popularmovies.data.network.models.Movie;
 import com.example.android.popularmovies.databinding.MovieDescriptionFragmentBinding;
 import com.example.android.popularmovies.utility.InjectorUtils;
+import com.squareup.picasso.Picasso;
 
 public class MovieDescriptionFragment extends Fragment {
 
     private static final String MOVIE_ID = "movie_id";
+
+    private final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
 
     private int mMovieId;
     private MovieDescriptionViewModel mViewModel;
@@ -53,9 +58,37 @@ public class MovieDescriptionFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        observeMovieData(mMovieId);
+    }
+
+    private void observeMovieData(int id) {
         MovieDescriptionViewModelFactory factory = InjectorUtils.provideMovieDescriptionViewModelFactory(
                 getActivity().getApplicationContext(), mMovieId);
         mViewModel = ViewModelProviders.of(this, factory).get(MovieDescriptionViewModel.class);
+
+        mViewModel.getMovie().observe(this, new Observer<Movie>() {
+            @Override
+            public void onChanged(@Nullable Movie movie) {
+                populateViews(movie);
+            }
+        });
     }
 
+    private void populateViews(Movie movie) {
+        getActivity().setTitle(movie.getTitle());
+
+        mBinding.movieDescriptionFragmentDescriptionTextView.setText(movie.getOverview());
+        mBinding.movieDescriptionFragmentStatusTextView.setText(movie.getStatus());
+
+        String releaseYear = movie.getReleaseDate().substring(0, 4);
+        mBinding.movieDescriptionFragmentYearTextView.setText(releaseYear);
+
+        mBinding.movieDescriptionFragmentVotesTextView.setText(movie.getVoteString());
+        mBinding.movieDescriptionFragmentGenresTextView.setText(movie.getGenresString());
+        mBinding.movieDescriptionFragmentLengthTextView.setText(movie.getRuntimeString());
+
+        Picasso.get()
+                .load(POSTER_URL + movie.getPosterPath())
+                .into(mBinding.movieDescriptionFragmentPosterImageView);
+    }
 }
