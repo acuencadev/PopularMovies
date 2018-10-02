@@ -28,4 +28,8 @@ public class Trailer {
     public void setName(String name){
         this.name = name;
     }
+
+    public String getYoutubeUrl() {
+        return "http://www.youtube.com/watch?v=" + getKey();
+    }
 }
