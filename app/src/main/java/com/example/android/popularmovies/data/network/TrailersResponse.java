@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class TrailerResponse {
+public class TrailersResponse {
     @SerializedName("id")
     private int id_trailer;
     @SerializedName("results")

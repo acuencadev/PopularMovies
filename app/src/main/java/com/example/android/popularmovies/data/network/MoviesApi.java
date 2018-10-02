@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface MoviesAPI {
+public interface MoviesApi {
 
     @GET("movie/{id}")
     Call<Movie> getMovie(@Path("id") int id, @Query("api_key") String apiKey);
@@ -19,6 +19,6 @@ public interface MoviesAPI {
     Call<MoviesResponse> getPopularMovies(@Query("api_key") String apiKey, @Query("page") int page);
 
     @GET("movie/{id}/videos")
-    Call<TrailerResponse> getMovieTrailers(@Path("id") int id, @Query("api_key") String apiKey);
+    Call<TrailersResponse> getMovieTrailers(@Path("id") int id, @Query("api_key") String apiKey);
 
 }

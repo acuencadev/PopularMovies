@@ -24,7 +24,7 @@ public class MoviesNetworkDataSource {
 
     private final Context mContext;
     private final AppExecutors mExecutors;
-    private final MoviesAPI mAPI;
+    private final MoviesApi mAPI;
 
     private final String API_URL = "https://api.themoviedb.org/3/";
 
@@ -50,7 +50,7 @@ public class MoviesNetworkDataSource {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        mAPI = retrofit.create(MoviesAPI.class);
+        mAPI = retrofit.create(MoviesApi.class);
     }
 
     public LiveData<List<Movie>> getPopularMovies(int page) {
@@ -110,14 +110,14 @@ public class MoviesNetworkDataSource {
     public LiveData<List<Trailer>> getTrailers(int id) {
         final MutableLiveData<List<Trailer>> data = new MutableLiveData<>();
 
-        mAPI.getMovieTrailers(id, BuildConfig.MOVIES_API).enqueue(new Callback<TrailerResponse>() {
+        mAPI.getMovieTrailers(id, BuildConfig.MOVIES_API).enqueue(new Callback<TrailersResponse>() {
             @Override
-            public void onResponse(Call<TrailerResponse> call, Response<TrailerResponse> response) {
+            public void onResponse(Call<TrailersResponse> call, Response<TrailersResponse> response) {
                 data.setValue(response.body().getResults());
             }
 
             @Override
-            public void onFailure(Call<TrailerResponse> call, Throwable t) {
+            public void onFailure(Call<TrailersResponse> call, Throwable t) {
 
             }
         });
