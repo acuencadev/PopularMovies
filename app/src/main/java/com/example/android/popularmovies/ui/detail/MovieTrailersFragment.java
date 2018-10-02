@@ -64,10 +64,10 @@ public class MovieTrailersFragment extends Fragment
 
         mTrailersAdapter = new TrailersAdapter(getActivity(), this);
 
-        mBinding.activityDetailTrailersRecyclerView.setLayoutManager(
+        mBinding.movieReviewsFragmentTrailersRecyclerView.setLayoutManager(
                 new LinearLayoutManager(getActivity().getApplicationContext()));
-        mBinding.activityDetailTrailersRecyclerView.setAdapter(mTrailersAdapter);
-        mBinding.activityDetailTrailersRecyclerView.setHasFixedSize(true);
+        mBinding.movieReviewsFragmentTrailersRecyclerView.setAdapter(mTrailersAdapter);
+        mBinding.movieReviewsFragmentTrailersRecyclerView.setHasFixedSize(true);
 
         MovieTrailersViewModelFactory factory = InjectorUtils.provideMovieTrailersViewModelFactory(
                 getActivity().getApplicationContext(), mMovieId);

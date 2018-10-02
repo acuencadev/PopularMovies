@@ -7,7 +7,7 @@
         tools:context=".ui.detail.MovieTrailersFragment">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/activity_detail_trailers_recyclerView"
+            android:id="@+id/movie_reviews_fragment_trailers_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
