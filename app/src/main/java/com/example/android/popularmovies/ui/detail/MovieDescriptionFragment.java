@@ -16,11 +16,27 @@ import com.example.android.popularmovies.utility.InjectorUtils;
 
 public class MovieDescriptionFragment extends Fragment {
 
+    private static final String MOVIE_ID = "movie_id";
+
+    private int mMovieId;
     private MovieDescriptionViewModel mViewModel;
     private MovieDescriptionFragmentBinding mBinding;
 
-    public static MovieDescriptionFragment newInstance() {
-        return new MovieDescriptionFragment();
+    public static MovieDescriptionFragment newInstance(int movieId) {
+        MovieDescriptionFragment fragment = new MovieDescriptionFragment();
+
+        Bundle args = new Bundle();
+        args.putInt(MOVIE_ID, movieId);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mMovieId = getArguments().getInt(MOVIE_ID);
     }
 
     @Override
@@ -38,7 +54,7 @@ public class MovieDescriptionFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         MovieDescriptionViewModelFactory factory = InjectorUtils.provideMovieDescriptionViewModelFactory(
-                getActivity().getApplicationContext(), 1);
+                getActivity().getApplicationContext(), mMovieId);
         mViewModel = ViewModelProviders.of(this, factory).get(MovieDescriptionViewModel.class);
     }
 
