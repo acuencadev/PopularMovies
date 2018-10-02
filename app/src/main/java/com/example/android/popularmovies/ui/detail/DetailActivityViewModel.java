@@ -19,7 +19,7 @@ public class DetailActivityViewModel extends ViewModel {
 
     public DetailActivityViewModel(MoviesRepository repository, int movieId) {
         this.repository = repository;
-        this.movie = repository.getMovie(movieId);
+        this.movie = this.repository.getMovie(movieId);
         this.trailers = this.repository.getTrailers(movieId);
         this.reviews = this.repository.getReviews(movieId, 1);
     }
@@ -34,6 +34,6 @@ public class DetailActivityViewModel extends ViewModel {
     }
 
     public LiveData<List<Review>> getReviews() {
-        return reviews;
+        return this.reviews;
     }
 }
