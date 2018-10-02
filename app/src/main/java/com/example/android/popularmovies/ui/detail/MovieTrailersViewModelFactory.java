@@ -20,6 +20,6 @@ public class MovieTrailersViewModelFactory extends ViewModelProvider.NewInstance
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T) new DetailActivityViewModel(mRepository, mMovieId);
+        return (T) new MovieTrailersViewModel(mRepository, mMovieId);
     }
 }
