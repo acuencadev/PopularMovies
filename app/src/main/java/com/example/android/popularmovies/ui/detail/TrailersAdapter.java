@@ -121,7 +121,11 @@ public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.Traile
 
             titleTextView.setText(trailer.getName());
 
-            Picasso.get().load("").into(thumbImageView);
+            //TODO: Set the trailer type:
+            //typeTextView.setText(trailer.getType());
+
+            //TODO: Load trailer thumbnail
+            //Picasso.get().load("").into(thumbImageView);
         }
     }
 }
