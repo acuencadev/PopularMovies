@@ -2,7 +2,9 @@ package com.example.android.popularmovies.ui.detail;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -82,6 +84,8 @@ public class MovieTrailersFragment extends Fragment
 
     @Override
     public void onItemClick(Trailer trailer) {
-        //TODO: Play trailer on Youtube or new browser window.
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(trailer.getYoutubeUrl()));
+
+        startActivity(intent);
     }
 }
