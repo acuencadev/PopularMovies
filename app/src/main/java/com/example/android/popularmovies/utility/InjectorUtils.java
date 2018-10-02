@@ -7,6 +7,7 @@ import com.example.android.popularmovies.data.MoviesRepository;
 import com.example.android.popularmovies.data.database.MoviesDatabase;
 import com.example.android.popularmovies.data.network.MoviesNetworkDataSource;
 import com.example.android.popularmovies.ui.detail.DetailActivityViewModelFactory;
+import com.example.android.popularmovies.ui.detail.MovieReviewsViewModelFactory;
 import com.example.android.popularmovies.ui.detail.MovieTrailersViewModelFactory;
 import com.example.android.popularmovies.ui.list.MainActivityViewModelFactory;
 
@@ -45,5 +46,11 @@ public class InjectorUtils {
         MoviesRepository repository = provideRepository(context.getApplicationContext());
 
         return new MovieTrailersViewModelFactory(repository, id);
+    }
+
+    public static MovieReviewsViewModelFactory provideMovieReviewsViewModelFactory(Context context, int id, int page) {
+        MoviesRepository repository = provideRepository(context.getApplicationContext());
+
+        return new MovieReviewsViewModelFactory(repository, id, page);
     }
 }
