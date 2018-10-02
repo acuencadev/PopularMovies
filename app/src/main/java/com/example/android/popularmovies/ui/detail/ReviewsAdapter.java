@@ -51,7 +51,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewLi
         return mReviews.size();
     }
 
-    public void swapTrailers(final List<Review> reviewList) {
+    public void swapReviews(final List<Review> reviewList) {
         if (mReviews == null) {
             mReviews = reviewList;
             notifyDataSetChanged();

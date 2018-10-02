@@ -59,7 +59,7 @@ public class MovieReviewsFragment extends Fragment
         mViewModel.getReviews().observe(this, new Observer<List<Review>>() {
             @Override
             public void onChanged(@Nullable List<Review> reviews) {
-                mReviewsdapter.swapTrailers(reviews);
+                mReviewsdapter.swapReviews(reviews);
             }
         });
     }
