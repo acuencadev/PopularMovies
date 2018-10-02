@@ -22,12 +22,29 @@ import java.util.List;
 public class MovieTrailersFragment extends Fragment
         implements TrailersAdapter.OnItemClickListener {
 
+    private static final String MOVIE_ID = "movie_id";
+
+    private int mMovieId;
     private MovieTrailersViewModel mViewModel;
     private TrailersAdapter mTrailersAdapter;
     private MovieTrailersFragmentBinding mBinding;
 
-    public static MovieTrailersFragment newInstance() {
-        return new MovieTrailersFragment();
+    public static MovieTrailersFragment newInstance(int movieId) {
+        MovieTrailersFragment fragment = new MovieTrailersFragment();
+
+        Bundle args = new Bundle();
+        args.putInt(MOVIE_ID, movieId);
+
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mMovieId = getArguments().getInt(MOVIE_ID);
     }
 
     @Override
@@ -51,7 +68,7 @@ public class MovieTrailersFragment extends Fragment
         mBinding.activityDetailTrailersRecyclerView.setHasFixedSize(true);
 
         MovieTrailersViewModelFactory factory = InjectorUtils.provideMovieTrailersViewModelFactory(
-                getActivity().getApplicationContext(), 550);
+                getActivity().getApplicationContext(), mMovieId);
 
         mViewModel = ViewModelProviders.of(this, factory).get(MovieTrailersViewModel.class);
 
