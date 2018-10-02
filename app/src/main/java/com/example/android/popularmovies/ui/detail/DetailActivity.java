@@ -45,7 +45,7 @@ public class DetailActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new MovieDescriptionFragment(), getString(R.string.tab_movies_description));
         adapter.addFragment(MovieTrailersFragment.newInstance(mMovieId), getString(R.string.tab_movies_trailers));
-        adapter.addFragment(new MovieReviewsFragment(), getString(R.string.tab_movies_reviews));
+        adapter.addFragment(MovieReviewsFragment.newInstance(mMovieId), getString(R.string.tab_movies_reviews));
         viewPager.setAdapter(adapter);
     }
 
