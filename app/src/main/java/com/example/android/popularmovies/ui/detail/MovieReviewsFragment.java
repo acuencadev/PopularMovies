@@ -22,12 +22,29 @@ import java.util.List;
 public class MovieReviewsFragment extends Fragment
         implements ReviewsAdapter.OnItemClickListener {
 
+    private static final String MOVIE_ID = "movie_id";
+
+    private int mMovieId;
+    private int mCurrentPage;
     private MovieReviewsViewModel mViewModel;
     private ReviewsAdapter mReviewsdapter;
     private MovieReviewsFragmentBinding mBinding;
 
-    public static MovieReviewsFragment newInstance() {
-        return new MovieReviewsFragment();
+    public static MovieReviewsFragment newInstance(int movieId) {
+        MovieReviewsFragment fragment = new MovieReviewsFragment();
+
+        Bundle args = new Bundle();
+        args.putInt(MOVIE_ID, movieId);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mMovieId = getArguments().getInt(MOVIE_ID);
     }
 
     @Override
@@ -52,7 +69,7 @@ public class MovieReviewsFragment extends Fragment
         mBinding.movieReviewsFragmentReviewsRecyclerView.setHasFixedSize(true);
 
         MovieReviewsViewModelFactory factory = InjectorUtils.provideMovieReviewsViewModelFactory(
-                getActivity().getApplicationContext(), 550, 1);
+                getActivity().getApplicationContext(), mMovieId, mCurrentPage);
 
         mViewModel = ViewModelProviders.of(this, factory).get(MovieReviewsViewModel.class);
 
