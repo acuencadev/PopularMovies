@@ -2,7 +2,9 @@ package com.example.android.popularmovies.ui.detail;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,7 +27,7 @@ public class MovieReviewsFragment extends Fragment
     private static final String MOVIE_ID = "movie_id";
 
     private int mMovieId;
-    private int mCurrentPage;
+    private int mCurrentPage = 1;
     private MovieReviewsViewModel mViewModel;
     private ReviewsAdapter mReviewsdapter;
     private MovieReviewsFragmentBinding mBinding;
@@ -83,6 +85,8 @@ public class MovieReviewsFragment extends Fragment
 
     @Override
     public void onItemClick(Review review) {
-        //TODO: Open review in The Movies DB site.
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(review.getUrl()));
+
+        startActivity(intent);
     }
 }
