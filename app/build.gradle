@@ -40,6 +40,8 @@ dependencies {
     implementation "com.squareup.picasso:picasso:$picassoVersion"
 
     implementation "com.jakewharton:butterknife:$butterknifeVersion"
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknifeVersion"
 
     implementation "android.arch.persistence.room:runtime:$archComponentsVersion"
