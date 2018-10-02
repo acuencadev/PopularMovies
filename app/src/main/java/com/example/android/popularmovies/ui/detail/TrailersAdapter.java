@@ -21,6 +21,8 @@ import butterknife.ButterKnife;
 
 public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.TrailerListViewHolder> {
 
+    private static final String YOUTUBE_VIDEO_THUMB_URL = "https://img.youtube.com/vi/%s/default.jpg";
+
     private final Context mContext;
 
     private List<Trailer> mTrailers;
@@ -124,8 +126,9 @@ public class TrailersAdapter extends RecyclerView.Adapter<TrailersAdapter.Traile
             //TODO: Set the trailer type:
             //typeTextView.setText(trailer.getType());
 
-            //TODO: Load trailer thumbnail
-            //Picasso.get().load("").into(thumbImageView);
+            Picasso.get()
+                    .load(String.format(YOUTUBE_VIDEO_THUMB_URL, trailer.getKey()))
+                    .into(thumbImageView);
         }
     }
 }
