@@ -1,4 +1,4 @@
-package com.example.android.popularmovies.ui.detail;
+package com.example.android.popularmovies.ui.detail.description;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;

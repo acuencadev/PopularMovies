@@ -1,4 +1,4 @@
-package com.example.android.popularmovies.ui.detail;
+package com.example.android.popularmovies.ui.detail.trailers;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

@@ -7,9 +7,9 @@ import com.example.android.popularmovies.data.MoviesRepository;
 import com.example.android.popularmovies.data.database.MoviesDatabase;
 import com.example.android.popularmovies.data.network.MoviesNetworkDataSource;
 import com.example.android.popularmovies.ui.detail.DetailActivityViewModelFactory;
-import com.example.android.popularmovies.ui.detail.MovieDescriptionViewModelFactory;
-import com.example.android.popularmovies.ui.detail.MovieReviewsViewModelFactory;
-import com.example.android.popularmovies.ui.detail.MovieTrailersViewModelFactory;
+import com.example.android.popularmovies.ui.detail.description.MovieDescriptionViewModelFactory;
+import com.example.android.popularmovies.ui.detail.reviews.MovieReviewsViewModelFactory;
+import com.example.android.popularmovies.ui.detail.trailers.MovieTrailersViewModelFactory;
 import com.example.android.popularmovies.ui.list.MainActivityViewModelFactory;
 
 public class InjectorUtils {

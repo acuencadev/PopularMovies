@@ -5,7 +5,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.detail.MovieReviewsFragment">
+        tools:context=".ui.detail.reviews.MovieReviewsFragment">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/movie_reviews_fragment_reviews_recyclerView"

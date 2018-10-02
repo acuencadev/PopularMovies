@@ -10,6 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.android.popularmovies.databinding.ActivityDetailBinding;
+import com.example.android.popularmovies.ui.detail.description.MovieDescriptionFragment;
+import com.example.android.popularmovies.ui.detail.reviews.MovieReviewsFragment;
+import com.example.android.popularmovies.ui.detail.trailers.MovieTrailersFragment;
 import com.example.android.popularmovies.ui.list.MainActivity;
 import com.example.android.popularmovies.R;
 
