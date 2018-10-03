@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toolbar;
 
 import com.example.android.popularmovies.databinding.ActivityDetailBinding;
 import com.example.android.popularmovies.ui.detail.description.MovieDescriptionFragment;
@@ -36,7 +37,7 @@ public class DetailActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_detail);
 
-        setSupportActionBar(mBinding.activityDetailToolBar);
+        setSupportActionBar((android.support.v7.widget.Toolbar) mBinding.activityDetailToolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         setupViewPager(mBinding.activityDetailViewpager);
