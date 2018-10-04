@@ -54,6 +54,10 @@ public class MainActivity extends AppCompatActivity
         binding.activityMainMoviesRecyclerView.setAdapter(mMoviesAdapter);
         binding.activityMainMoviesRecyclerView.setHasFixedSize(true);
 
+        setSupportActionBar((android.support.v7.widget.Toolbar)binding.activityMainToolBar);
+
+        setTitle(getString(R.string.app_name));
+
         observeMovieData();
 
         swapMoviesInView();
