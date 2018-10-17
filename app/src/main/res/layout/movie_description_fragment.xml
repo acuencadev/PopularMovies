@@ -127,6 +127,19 @@
                     app:layout_constraintTop_toBottomOf="@+id/movie_description_fragment_year_textView"
                     tools:text="RELEASED" />
 
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/floatingActionButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:clickable="true"
+                    app:layout_constraintBottom_toBottomOf="@+id/movie_description_fragment_backdrop_imageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/movie_description_fragment_backdrop_imageView"
+                    app:srcCompat="@drawable/baseline_favorite_white" />
+
             </android.support.constraint.ConstraintLayout>
 
         </ScrollView>
