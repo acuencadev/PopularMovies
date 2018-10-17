@@ -49,6 +49,10 @@ public class MoviesRepository {
         return mMoviesNetworkDataSource.getPopularMovies(page);
     }
 
+    public LiveData<List<Movie>> getFavoriteMovies() {
+        return mMoviesDao.getMovies();
+    }
+
     public LiveData<Movie> getMovie(int id) {
         return mMoviesNetworkDataSource.getMovie(id);
     }
