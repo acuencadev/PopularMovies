@@ -7,24 +7,26 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
+import com.example.android.popularmovies.data.models.Movie;
+
 import java.util.List;
 
 @Dao
 public interface MoviesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(MovieEntry entry);
+    void insert(Movie entry);
 
-    @Query("SELECT * FROM movie WHERE page = :page")
-    LiveData<List<MovieEntry>> getMoviesByPage(int page);
+    //@Query("SELECT * FROM movie WHERE page = :page")
+    //LiveData<List<Movie>> getMoviesByPage(int page);
 
     @Query("SELECT * FROM movie")
-    LiveData<List<MovieEntry>> getMovies();
+    LiveData<List<Movie>> getMovies();
 
     @Query("SELECT * FROM movie WHERE id = :id")
-    LiveData<MovieEntry> getMovieById(String id);
+    LiveData<Movie> getMovieById(String id);
 
     @Delete
-    void delete(MovieEntry entry);
+    void delete(Movie entry);
 
 }

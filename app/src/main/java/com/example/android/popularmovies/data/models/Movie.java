@@ -1,5 +1,10 @@
 package com.example.android.popularmovies.data.models;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import java.util.List;
@@ -7,83 +12,145 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "movie")
 public class Movie {
 
-    @SerializedName("adult")
-    @Expose
-    private Boolean adult;
-    @SerializedName("backdrop_path")
-    @Expose
-    private String backdropPath;
-    @SerializedName("belongs_to_collection")
-    @Expose
-    private Object belongsToCollection;
-    @SerializedName("budget")
-    @Expose
-    private Integer budget;
-    @SerializedName("genres")
-    @Expose
-    private List<Genre> genres = null;
-    @SerializedName("homepage")
-    @Expose
-    private String homepage;
     @SerializedName("id")
     @Expose
+    @PrimaryKey
+    @NonNull
     private Integer id;
-    @SerializedName("imdb_id")
-    @Expose
-    private String imdbId;
-    @SerializedName("original_language")
-    @Expose
-    private String originalLanguage;
-    @SerializedName("original_title")
-    @Expose
-    private String originalTitle;
-    @SerializedName("overview")
-    @Expose
-    private String overview;
-    @SerializedName("popularity")
-    @Expose
-    private Double popularity;
-    @SerializedName("poster_path")
-    @Expose
-    private String posterPath;
-    @SerializedName("production_companies")
-    @Expose
-    private List<ProductionCompany> productionCompanies = null;
-    @SerializedName("production_countries")
-    @Expose
-    private List<ProductionCountry> productionCountries = null;
-    @SerializedName("release_date")
-    @Expose
-    private String releaseDate;
-    @SerializedName("revenue")
-    @Expose
-    private Integer revenue;
-    @SerializedName("runtime")
-    @Expose
-    private Integer runtime;
-    @SerializedName("spoken_languages")
-    @Expose
-    private List<SpokenLanguage> spokenLanguages = null;
-    @SerializedName("status")
-    @Expose
-    private String status;
-    @SerializedName("tagline")
-    @Expose
-    private String tagline;
+
     @SerializedName("title")
     @Expose
     private String title;
-    @SerializedName("video")
+
+    @SerializedName("overview")
     @Expose
-    private Boolean video;
-    @SerializedName("vote_average")
+    private String overview;
+
+    @SerializedName("status")
     @Expose
-    private Double voteAverage;
+    private String status;
+
+    @SerializedName("release_date")
+    @Expose
+    @ColumnInfo(name = "release_date")
+    private String releaseDate;
+
     @SerializedName("vote_count")
     @Expose
+    @ColumnInfo(name = "vote_count")
     private Integer voteCount;
+
+    @SerializedName("runtime")
+    @Expose
+    private Integer runtime;
+
+    @SerializedName("poster_path")
+    @Expose
+    @ColumnInfo(name = "poster_path")
+    private String posterPath;
+
+    @SerializedName("backdrop_path")
+    @Expose
+    @ColumnInfo(name = "backdrop_path")
+    private String backdropPath;
+
+    public Movie(Integer id, String title, String overview, String status, String releaseDate,
+                 Integer voteCount, Integer runtime, String posterPath, String backdropPath) {
+        this.id = id;
+        this.title = title;
+        this.overview = overview;
+        this.status = status;
+        this.releaseDate = releaseDate;
+        this.voteCount = voteCount;
+        this.runtime = runtime;
+        this.posterPath = posterPath;
+        this.backdropPath = backdropPath;
+    }
+
+    //Unused fields
+
+    @SerializedName("adult")
+    @Expose
+    @Ignore
+    private Boolean adult;
+
+    @SerializedName("belongs_to_collection")
+    @Expose
+    @Ignore
+    private Object belongsToCollection;
+
+    @SerializedName("budget")
+    @Expose
+    @Ignore
+    private Integer budget;
+
+    @SerializedName("homepage")
+    @Expose
+    @Ignore
+    private String homepage;
+
+    @SerializedName("genres")
+    @Expose
+    @Ignore
+    private List<Genre> genres = null;
+
+    @SerializedName("imdb_id")
+    @Expose
+    @Ignore
+    private String imdbId;
+
+    @SerializedName("original_language")
+    @Expose
+    @Ignore
+    private String originalLanguage;
+
+    @SerializedName("original_title")
+    @Expose
+    @Ignore
+    private String originalTitle;
+
+    @SerializedName("popularity")
+    @Expose
+    @Ignore
+    private Double popularity;
+
+    @SerializedName("production_companies")
+    @Expose
+    @Ignore
+    private List<ProductionCompany> productionCompanies = null;
+
+    @SerializedName("production_countries")
+    @Expose
+    @Ignore
+    private List<ProductionCountry> productionCountries = null;
+
+    @SerializedName("revenue")
+    @Expose
+    @Ignore
+    private Integer revenue;
+
+    @SerializedName("spoken_languages")
+    @Expose
+    @Ignore
+    private List<SpokenLanguage> spokenLanguages = null;
+
+    @SerializedName("tagline")
+    @Expose
+    @Ignore
+    private String tagline;
+
+    @SerializedName("video")
+    @Expose
+    @Ignore
+    private Boolean video;
+
+    @SerializedName("vote_average")
+    @Expose
+    @Ignore
+    private Double voteAverage;
 
     public Boolean getAdult() {
         return adult;
