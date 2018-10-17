@@ -1,7 +1,7 @@
 package com.example.android.popularmovies.utility;
 
 import com.example.android.popularmovies.data.database.MovieEntry;
-import com.example.android.popularmovies.data.network.models.Movie;
+import com.example.android.popularmovies.data.models.Movie;
 
 import java.util.ArrayList;
 import java.util.List;

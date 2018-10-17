@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.example.android.popularmovies.data.MoviesRepository;
-import com.example.android.popularmovies.data.network.models.Movie;
+import com.example.android.popularmovies.data.models.Movie;
 
 public class MovieDescriptionViewModel extends ViewModel {
 

@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.popularmovies.R;
-import com.example.android.popularmovies.data.network.models.Movie;
+import com.example.android.popularmovies.data.models.Movie;
 import com.example.android.popularmovies.databinding.MovieDescriptionFragmentBinding;
 import com.example.android.popularmovies.utility.InjectorUtils;
 import com.squareup.picasso.Picasso;

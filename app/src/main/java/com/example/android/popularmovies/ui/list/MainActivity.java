@@ -14,7 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.android.popularmovies.R;
-import com.example.android.popularmovies.data.network.models.Movie;
+import com.example.android.popularmovies.data.models.Movie;
 import com.example.android.popularmovies.databinding.ActivityMainBinding;
 import com.example.android.popularmovies.ui.detail.DetailActivity;
 import com.example.android.popularmovies.ui.settings.SettingsActivity;

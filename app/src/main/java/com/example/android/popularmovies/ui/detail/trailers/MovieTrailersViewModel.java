@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.example.android.popularmovies.data.MoviesRepository;
-import com.example.android.popularmovies.data.network.models.Trailer;
+import com.example.android.popularmovies.data.models.Trailer;
 
 import java.util.List;
 

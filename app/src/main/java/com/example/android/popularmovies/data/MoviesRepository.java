@@ -5,9 +5,9 @@ import android.arch.lifecycle.LiveData;
 import com.example.android.popularmovies.AppExecutors;
 import com.example.android.popularmovies.data.database.MoviesDao;
 import com.example.android.popularmovies.data.network.MoviesNetworkDataSource;
-import com.example.android.popularmovies.data.network.models.Movie;
-import com.example.android.popularmovies.data.network.models.Review;
-import com.example.android.popularmovies.data.network.models.Trailer;
+import com.example.android.popularmovies.data.models.Movie;
+import com.example.android.popularmovies.data.models.Review;
+import com.example.android.popularmovies.data.models.Trailer;
 
 import java.util.List;
 

@@ -7,7 +7,7 @@ import android.arch.lifecycle.ViewModel;
 import android.support.annotation.Nullable;
 
 import com.example.android.popularmovies.data.MoviesRepository;
-import com.example.android.popularmovies.data.network.models.Movie;
+import com.example.android.popularmovies.data.models.Movie;
 
 import java.util.List;
 

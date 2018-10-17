@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.popularmovies.R;
-import com.example.android.popularmovies.data.network.models.Trailer;
+import com.example.android.popularmovies.data.models.Trailer;
 import com.example.android.popularmovies.databinding.MovieTrailersFragmentBinding;
 import com.example.android.popularmovies.utility.InjectorUtils;
 

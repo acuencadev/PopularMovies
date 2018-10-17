@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.popularmovies.R;
-import com.example.android.popularmovies.data.network.models.Trailer;
+import com.example.android.popularmovies.data.models.Trailer;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

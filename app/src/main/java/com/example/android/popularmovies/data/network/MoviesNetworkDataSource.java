@@ -6,9 +6,9 @@ import android.content.Context;
 
 import com.example.android.popularmovies.AppExecutors;
 import com.example.android.popularmovies.BuildConfig;
-import com.example.android.popularmovies.data.network.models.Movie;
-import com.example.android.popularmovies.data.network.models.Review;
-import com.example.android.popularmovies.data.network.models.Trailer;
+import com.example.android.popularmovies.data.models.Movie;
+import com.example.android.popularmovies.data.models.Review;
+import com.example.android.popularmovies.data.models.Trailer;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.example.android.popularmovies.data.network;
 
-import com.example.android.popularmovies.data.network.models.Trailer;
+import com.example.android.popularmovies.data.models.Trailer;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
