@@ -90,5 +90,9 @@ public class MovieDescriptionFragment extends Fragment {
         Picasso.get()
                 .load(POSTER_URL + movie.getPosterPath())
                 .into(mBinding.movieDescriptionFragmentPosterImageView);
+
+        Picasso.get()
+                .load(POSTER_URL + movie.getBackdropPath())
+                .into(mBinding.movieDescriptionFragmentBackdropImageView);
     }
 }
