@@ -11,4 +11,6 @@
     <string name="tab_movies_description">Descripción</string>
     <string name="tab_movies_trailers">Trailers</string>
     <string name="tab_movies_reviews">Reseñas</string>
+    <string name="favorite_on_snackbar">Película agregada a la lista de favoritos</string>
+    <string name="favorite_off_snackbar">Película removida de la lista de favoritos</string>
 </resources>

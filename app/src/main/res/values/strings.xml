@@ -22,4 +22,7 @@
     <string name="tab_movies_description">Description</string>
     <string name="tab_movies_trailers">Trailers</string>
     <string name="tab_movies_reviews">Reviews</string>
+
+    <string name="favorite_on_snackbar">Movie added to the favorites list</string>
+    <string name="favorite_off_snackbar">Movie removed from the favorites list</string>
 </resources>
