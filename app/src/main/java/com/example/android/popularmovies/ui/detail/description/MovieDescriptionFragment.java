@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +51,13 @@ public class MovieDescriptionFragment extends Fragment {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.movie_description_fragment, container,
                 false);
         View view = mBinding.getRoot();
+
+        mBinding.movieDescriptionFragmentFavoriteFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: Handle favorite onClick
+            }
+        });
 
         return view;
     }
