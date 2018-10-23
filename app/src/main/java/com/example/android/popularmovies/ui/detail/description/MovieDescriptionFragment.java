@@ -21,18 +21,23 @@ import com.squareup.picasso.Picasso;
 public class MovieDescriptionFragment extends Fragment {
 
     private static final String MOVIE_ID = "movie_id";
+    private static final String NETWORK_DATA = "network_data";
+
 
     private final String POSTER_URL = "http://image.tmdb.org/t/p/w185";
 
     private int mMovieId;
+    private boolean mNetworkData;
     private MovieDescriptionViewModel mViewModel;
     private MovieDescriptionFragmentBinding mBinding;
 
-    public static MovieDescriptionFragment newInstance(int movieId) {
+    public static MovieDescriptionFragment newInstance(int movieId, boolean networkData) {
         MovieDescriptionFragment fragment = new MovieDescriptionFragment();
 
         Bundle args = new Bundle();
         args.putInt(MOVIE_ID, movieId);
+        args.putBoolean(NETWORK_DATA, networkData);
+
         fragment.setArguments(args);
 
         return fragment;
@@ -43,6 +48,7 @@ public class MovieDescriptionFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         mMovieId = getArguments().getInt(MOVIE_ID);
+        mNetworkData = getArguments().getBoolean(NETWORK_DATA);
     }
 
     @Override
