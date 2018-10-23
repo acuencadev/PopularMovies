@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toolbar;
 
 import com.example.android.popularmovies.databinding.ActivityDetailBinding;
@@ -23,6 +24,7 @@ import java.util.List;
 public class DetailActivity extends AppCompatActivity {
 
     private int mMovieId;
+    private MainActivity.MovieSource mSource;
 
     ActivityDetailBinding mBinding;
 
@@ -33,6 +35,7 @@ public class DetailActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         mMovieId = intent.getIntExtra(MainActivity.EXTRA_MESSAGE, 0);
+        mSource = (MainActivity.MovieSource) intent.getSerializableExtra(MainActivity.EXTRA_SOURCE);
 
         mBinding = DataBindingUtil.setContentView(this,
                 R.layout.activity_detail);
