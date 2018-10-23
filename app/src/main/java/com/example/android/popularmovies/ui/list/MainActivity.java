@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity
         } else if (sortBy.equals(getString(R.string.pref_item_top_rated_key))){
             mViewModel.pullTopRatedMovies(mCurrentPage);
         } else {
-            //TODO: Pull favorite movies only.
+            mViewModel.pullFavoriteMovies();
         }
     }
 
