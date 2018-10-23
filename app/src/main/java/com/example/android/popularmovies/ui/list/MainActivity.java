@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity
         implements MoviesAdapter.OnItemClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static final String EXTRA_MESSAGE = "com.example.android.popularmovies.MESSAGEMOVIEID";
+    public static final String EXTRA_SOURCE = "com.example.android.popularmovies.MOVIESOURCE";
 
     private static final String CURRENT_PAGE = "current_page";
 
@@ -33,6 +34,13 @@ public class MainActivity extends AppCompatActivity
     MainActivityViewModel mViewModel;
 
     private int mCurrentPage = 1;
+
+    private MovieSource mSource;
+
+    public enum MovieSource {
+        LOCAL,
+        NETWORK
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,10 +115,13 @@ public class MainActivity extends AppCompatActivity
 
         if (sortBy.equals(getString(R.string.pref_item_most_popular_key))) {
             mViewModel.pullPopularMovies(mCurrentPage);
+            mSource = MovieSource.NETWORK;
         } else if (sortBy.equals(getString(R.string.pref_item_top_rated_key))){
             mViewModel.pullTopRatedMovies(mCurrentPage);
+            mSource = MovieSource.NETWORK;
         } else {
             mViewModel.pullFavoriteMovies();
+            mSource = MovieSource.LOCAL;
         }
     }
 
@@ -131,6 +142,7 @@ public class MainActivity extends AppCompatActivity
     public void onItemClick(Movie movie) {
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(EXTRA_MESSAGE, movie.getId());
+        intent.putExtra(EXTRA_SOURCE, mSource);
 
         startActivity(intent);
     }
