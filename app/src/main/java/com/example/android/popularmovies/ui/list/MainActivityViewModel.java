@@ -47,4 +47,15 @@ public class MainActivityViewModel extends ViewModel {
             }
         });
     }
+
+    public void pullFavoriteMovies() {
+        LiveData<List<Movie>> movies = mRepository.getFavoriteMovies();
+
+        mMoviesObserver.addSource(movies, new Observer<List<Movie>>() {
+            @Override
+            public void onChanged(@Nullable List<Movie> movieList) {
+                mMoviesObserver.setValue(movieList);
+            }
+        });
+    }
 }
