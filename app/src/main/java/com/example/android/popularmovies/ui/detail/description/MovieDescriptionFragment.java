@@ -28,6 +28,7 @@ public class MovieDescriptionFragment extends Fragment {
 
     private int mMovieId;
     private boolean mNetworkData;
+    private boolean mIsFavorite;
     private MovieDescriptionViewModel mViewModel;
     private MovieDescriptionFragmentBinding mBinding;
 
@@ -71,6 +72,16 @@ public class MovieDescriptionFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        if (mNetworkData) {
+            mBinding.movieDescriptionFragmentFavoriteFloatingActionButton.setImageResource(
+                    R.drawable.baseline_favorite_white
+            );
+        } else {
+            mBinding.movieDescriptionFragmentFavoriteFloatingActionButton.setImageResource(
+                    R.drawable.baseline_favorite_border
+            );
+        }
 
         observeMovieData(mMovieId);
     }
