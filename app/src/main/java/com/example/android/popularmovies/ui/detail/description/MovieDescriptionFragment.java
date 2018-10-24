@@ -74,16 +74,26 @@ public class MovieDescriptionFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         if (mNetworkData) {
-            mBinding.movieDescriptionFragmentFavoriteFloatingActionButton.setImageResource(
-                    R.drawable.baseline_favorite_white
-            );
+            mIsFavorite = false;
         } else {
-            mBinding.movieDescriptionFragmentFavoriteFloatingActionButton.setImageResource(
-                    R.drawable.baseline_favorite_border
-            );
+            mIsFavorite = true;
         }
 
+        toggleFavoriteIcon(mIsFavorite);
+
         observeMovieData(mMovieId);
+    }
+
+    private void toggleFavoriteIcon(boolean isFavorite) {
+        int resourceIcon;
+
+        if (isFavorite) {
+            resourceIcon = R.drawable.baseline_favorite_border;
+        } else {
+            resourceIcon = R.drawable.baseline_favorite_white;
+        }
+
+        mBinding.movieDescriptionFragmentFavoriteFloatingActionButton.setImageResource(resourceIcon);
     }
 
     private void observeMovieData(int id) {
