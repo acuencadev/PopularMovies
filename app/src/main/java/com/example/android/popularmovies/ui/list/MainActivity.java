@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity
     public static final String EXTRA_SOURCE = "com.example.android.popularmovies.MOVIESOURCE";
 
     private static final String CURRENT_PAGE = "current_page";
+    private static final String CURRENT_SOURCE = "current_source";
 
     MoviesAdapter mMoviesAdapter;
     MainActivityViewModel mViewModel;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity
 
         if (savedInstanceState != null) {
             mCurrentPage = savedInstanceState.getInt(CURRENT_PAGE);
+            mSource = (MovieSource) savedInstanceState.getSerializable(CURRENT_SOURCE);
         }
 
         mMoviesAdapter = new MoviesAdapter(this, this);
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(CURRENT_PAGE, mCurrentPage);
+        outState.putSerializable(CURRENT_SOURCE, mSource);
         super.onSaveInstanceState(outState);
     }
 
