@@ -62,7 +62,15 @@ public class MovieDescriptionFragment extends Fragment {
         mBinding.movieDescriptionFragmentFavoriteFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Handle favorite onClick
+                if (mIsFavorite) {
+                    mViewModel.removeFromFavorites();
+                    mIsFavorite = false;
+                } else {
+                    mViewModel.addToFavorites();
+                    mIsFavorite = true;
+                }
+
+                toggleFavoriteIcon(mIsFavorite);
             }
         });
 
