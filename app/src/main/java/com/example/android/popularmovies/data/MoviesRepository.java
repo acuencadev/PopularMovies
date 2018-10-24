@@ -57,6 +57,24 @@ public class MoviesRepository {
         return mMoviesDao.getMovieById(id);
     }
 
+    public void addToFavorites(final Movie movie) {
+        AppExecutors.getInstance().networkIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                mMoviesDao.insert(movie);
+            }
+        });
+    }
+
+    public void removeFromFavorites(final Movie movie) {
+        AppExecutors.getInstance().networkIO().execute(new Runnable() {
+            @Override
+            public void run() {
+                mMoviesDao.delete(movie);
+            }
+        });
+    }
+
     public LiveData<Movie> getMovie(int id) {
         return mMoviesNetworkDataSource.getMovie(id);
     }
