@@ -62,15 +62,22 @@ public class MovieDescriptionFragment extends Fragment {
         mBinding.movieDescriptionFragmentFavoriteFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int messageId;
+
                 if (mIsFavorite) {
                     mViewModel.removeFromFavorites();
                     mIsFavorite = false;
+                    messageId = R.string.favorite_off_snackbar;
                 } else {
                     mViewModel.addToFavorites();
                     mIsFavorite = true;
+                    messageId = R.string.favorite_on_snackbar;
                 }
 
                 toggleFavoriteIcon(mIsFavorite);
+
+                Snackbar.make(mBinding.movieDescriptionFragmentMainConstraintLayout,
+                        messageId, Snackbar.LENGTH_LONG).show();
             }
         });
 
