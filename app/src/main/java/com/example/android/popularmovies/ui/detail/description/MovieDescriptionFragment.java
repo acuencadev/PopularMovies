@@ -98,7 +98,7 @@ public class MovieDescriptionFragment extends Fragment {
 
     private void observeMovieData(int id) {
         MovieDescriptionViewModelFactory factory = InjectorUtils.provideMovieDescriptionViewModelFactory(
-                getActivity().getApplicationContext(), mMovieId);
+                getActivity().getApplicationContext(), id);
         mViewModel = ViewModelProviders.of(this, factory).get(MovieDescriptionViewModel.class);
 
         mViewModel.getMovie().observe(this, new Observer<Movie>() {
