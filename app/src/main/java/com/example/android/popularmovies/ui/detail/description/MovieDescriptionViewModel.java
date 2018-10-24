@@ -20,4 +20,12 @@ public class MovieDescriptionViewModel extends ViewModel {
     public LiveData<Movie> getMovie() {
         return this.mMovie;
     }
+
+    public void addToFavorites() {
+        this.mRepository.addToFavorites(mMovie.getValue());
+    }
+
+    public void removeFromFavorites() {
+        this.mRepository.removeFromFavorites(mMovie.getValue());
+    }
 }
