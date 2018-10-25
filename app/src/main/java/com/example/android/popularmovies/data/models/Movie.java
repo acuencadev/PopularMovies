@@ -38,6 +38,11 @@ public class Movie {
     @ColumnInfo(name = "release_date")
     private String releaseDate;
 
+    @SerializedName("vote_average")
+    @Expose
+    @ColumnInfo(name = "vote_average")
+    private Double voteAverage;
+
     @SerializedName("vote_count")
     @Expose
     @ColumnInfo(name = "vote_count")
@@ -146,11 +151,6 @@ public class Movie {
     @Expose
     @Ignore
     private Boolean video;
-
-    @SerializedName("vote_average")
-    @Expose
-    @Ignore
-    private Double voteAverage;
 
     public Boolean getAdult() {
         return adult;
