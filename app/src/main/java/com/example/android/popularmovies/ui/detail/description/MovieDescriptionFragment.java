@@ -116,10 +116,23 @@ public class MovieDescriptionFragment extends Fragment {
                 getActivity().getApplicationContext(), id);
         mViewModel = ViewModelProviders.of(this, factory).get(MovieDescriptionViewModel.class);
 
-        mViewModel.getMovie().observe(this, new Observer<Movie>() {
+        mViewModel.getLocalMovie().observe(this, new Observer<Movie>() {
             @Override
             public void onChanged(@Nullable Movie movie) {
-                populateViews(movie);
+                if (movie != null) {
+                    populateViews(movie);
+                    mIsFavorite = true;
+                    toggleFavoriteIcon(mIsFavorite);
+                } else {
+                    mViewModel.getMovie().observe(MovieDescriptionFragment.this, new Observer<Movie>() {
+                        @Override
+                        public void onChanged(@Nullable Movie movie) {
+                            populateViews(movie);
+                            mIsFavorite = false;
+                            toggleFavoriteIcon(mIsFavorite);
+                        }
+                    });
+                }
             }
         });
     }
